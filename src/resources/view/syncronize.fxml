@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Arc?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.SVGPath?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane id="background" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="1280.0" style="-fx-border-radius: 20; -fx-background-radius: 20;" stylesheets="@syncronizeGreen.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Synchronize">
+   <top>
+      <AnchorPane id="header" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="80.0" prefWidth="1583.0" BorderPane.alignment="CENTER">
+         <children>
+            <Circle fx:id="profile_picture" fill="DODGERBLUE" layoutX="932.0" layoutY="40.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="48.0" AnchorPane.topAnchor="20.0" />
+            <Group layoutX="-101.0" layoutY="-171.0" AnchorPane.bottomAnchor="40.32966613769531" AnchorPane.leftAnchor="80.0" AnchorPane.topAnchor="16.760009765625">
+               <children>
+                  <SVGPath content="M343.5,179.6c-9-47.7-47.9-83.6-94.5-83.6c-41.2,0-76.4,28.4-90.2,67.8C52.2,145.4,34.7,321.4,147,325.4c4.7,0,9.3-0.3,13.6-1c87.1-12.6,96.7-145.8,181.9-144.7c0.4,0,0.7,0,1.1,0L343.5,179.6z" scaleX="0.2" scaleY="0.2">
+                     <fill>
+                        <LinearGradient endX="0.7047619047619047" endY="1.0" startY="1.0">
+                           <stops>
+                              <Stop>
+                                 <color>
+                                    <Color red="0.8684210777282715" green="0.8684210777282715" blue="0.8684210777282715" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="1.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" opacity="0.747826099395752" />
+                                 </color>
+                              </Stop>
+                           </stops>
+                        </LinearGradient>
+                     </fill>
+                  </SVGPath>
+                  <SVGPath content="M350,74.7c0,0.3-0.1,0.6-0.1,0.9c0.2,5-1.4,9.6-3.9,13.9c-1.4,2.4-2.9,4.8-4,7.3c-3.6,7.8-2.5,15.4,1.6,22.7c2.2,3.9,5.3,7.1,9.2,9.9c2.5-5.1,6.2-9.4,5.8-15.5c-0.3-5.1-0.1-10.3-0.1-15.7c0.8,6,1.7,11.9,2.5,18c0.6-0.5,1.1-0.9,1.6-1.3c2.7-2,5.3-4.2,8.1-6c1.4-0.9,1.8-1.7,1.5-3.3c-0.8-5.2-3.1-9.9-6-14.2c-4.1-6.2-9.3-11.5-15.1-16.2c-0.2-0.2-0.5-0.4-0.8-0.6C350.4,74.7,350.2,74.7,350,74.7z" layoutX="-120.0" layoutY="94.0" scaleX="0.2" scaleY="0.2">
+                     <fill>
+                        <LinearGradient endX="0.5047619047619047" endY="0.3761904761904762" startY="1.0">
+                           <stops>
+                              <Stop>
+                                 <color>
+                                    <Color red="0.8157894611358643" green="0.8157894611358643" blue="0.8157894611358643" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="1.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </Stop>
+                           </stops>
+                        </LinearGradient>
+                     </fill>
+                  </SVGPath>
+                  <SVGPath content="M439.6,102.4c-3.2-0.4-6.1-0.8-9.1-1c-15-1.3-29.8-0.9-44.3,3.7c-9.1,2.9-17.1,7.5-22.8,15.4c-5.3,7.5-8.4,15.9-10,24.9c-0.7,4.2-1.1,8.5-1.4,13c14.4-15.9,31.3-28.5,49.5-39.4c-16.5,13-31.7,27.1-43.2,45.1c0.5,0.3,0.9,0.5,1.2,0.6c13.6,3.5,27,3.7,39.9-2.7c10.5-5.2,18.1-13.1,21.8-24.4c1.4-4.4,2.7-8.8,4-13.2c2.4-8.2,6.9-15,13.4-20.6c0.2-0.2,0.4-0.3,0.6-0.5C439.2,103,439.3,102.9,439.6,102.4z" layoutX="-151.0" layoutY="66.0" scaleX="0.2" scaleY="0.2">
+                     <fill>
+                        <LinearGradient endX="0.5047619047619047" endY="0.3761904761904762" startY="1.0">
+                           <stops>
+                              <Stop>
+                                 <color>
+                                    <Color red="0.8157894611358643" green="0.8157894611358643" blue="0.8157894611358643" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="1.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </Stop>
+                           </stops>
+                        </LinearGradient>
+                     </fill>
+                  </SVGPath>
+                  <SVGPath content="M160.5,324.4c87.1-12.6,96.7-145.8,181.9-144.7c0.4,0,0.7,0,1.1,0c106.1,2.2,86.3,144.2,10,144.8C293,324.9,160.5,324.4,160.5,324.4" layoutX="-68.0" layoutY="-33.0" scaleX="0.2" scaleY="0.2">
+                     <fill>
+                        <LinearGradient endX="0.7047619047619047" startY="1.0">
+                           <stops>
+                              <Stop>
+                                 <color>
+                                    <Color red="0.8684210777282715" green="0.8684210777282715" blue="0.8684210777282715" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="1.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </Stop>
+                           </stops>
+                        </LinearGradient>
+                     </fill>
+                  </SVGPath>
+               </children>
+            </Group>
+         </children>
+      </AnchorPane>
+   </top>
+   <left>
+      <VBox id="leftSide_container" alignment="TOP_CENTER" prefHeight="520.0" prefWidth="196.0" spacing="20.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button id="button" fx:id="synchronization" alignment="TOP_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="392.0" text="Synchronization">
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="Georgia" size="16.0" />
+               </font>
+               <graphic>
+                  <Group>
+                     <children>
+                        <SVGPath id="icon" content="M424.096,1.493c-7.263-3.022-15.622-1.374-21.186,4.189l-50.268,50.269C272.018-2.525,158.398,4.308,85.777,76.931L65.21,97.499c-15.796,15.794-15.796,41.443,0,57.239c7.897,7.897,18.266,11.846,28.602,11.846c10.371,0,20.722-3.948,28.619-11.846l20.569-20.569c40.946-40.962,103.353-47.486,151.304-19.845l-45.152,45.117c-5.564,5.562-7.211,13.94-4.225,21.186c3.023,7.28,10.112,12.018,17.976,12.018h153.743c10.747,0,19.451-8.722,19.451-19.436V19.451C436.096,11.588,431.375,4.48,424.096,1.493z" layoutX="1.0890007019042969" scaleX="0.05" scaleY="0.05" />
+                        <SVGPath id="icon" content="M363.939,331.64l-20.551,20.567c-23.676,23.691-55.195,36.74-88.691,36.74c-22.371,0-43.796-5.94-62.648-16.86l45.169-45.186c5.58-5.563,7.229-13.907,4.225-21.185c-3.022-7.247-10.112-11.984-17.976-11.984H69.725c-10.747,0-19.451,8.689-19.451,19.435v153.76c0,7.861,4.738,14.936,12,17.958c7.262,3.02,15.639,1.337,21.202-4.225l50.201-50.199c35.006,25.442,76.896,39.417,121.02,39.417c55.127,0,106.941-21.46,145.932-60.466l20.549-20.533c15.794-15.83,15.794-41.444,0-57.239C405.365,315.845,379.733,315.845,363.939,331.64z" layoutX="4.0" layoutY="-282.0" scaleX="0.05" scaleY="0.05" />
+                     </children>
+                  </Group>
+               </graphic>
+            </Button>
+            <Button id="button" fx:id="upload" alignment="TOP_LEFT" graphicTextGap="10.0" layoutX="66.0" layoutY="30.0" mnemonicParsing="false" text="Upload">
+               <font>
+                  <Font name="Georgia" size="16.0" />
+               </font>
+               <graphic>
+                  <Group>
+                     <children>
+                        <SVGPath id="icon" content="M426.635,188.224C402.969,93.946,307.358,36.704,213.08,60.37C139.404,78.865,85.907,142.542,80.395,218.303C28.082,226.93-7.333,276.331,1.294,328.644c7.669,46.507,47.967,80.566,95.101,80.379h80v-32h-80c-35.346,0-64-28.654-64-64c0-35.346,28.654-64,64-64c8.837,0,16-7.163,16-16c-0.08-79.529,64.327-144.065,143.856-144.144c68.844-0.069,128.107,48.601,141.424,116.144c1.315,6.744,6.788,11.896,13.6,12.8c43.742,6.229,74.151,46.738,67.923,90.479c-5.593,39.278-39.129,68.523-78.803,68.721h-64v32h64c61.856-0.187,111.848-50.483,111.66-112.339C511.899,245.194,476.655,200.443,426.635,188.224z" scaleX="0.05" scaleY="0.05" />
+                        <SVGPath id="icon" content="M245.035,253.664l-64,64l22.56,22.56l36.8-36.64v153.44h32v-153.44l36.64,36.64l22.56-22.56l-64-64C261.354,247.46,251.276,247.46,245.035,253.664z" layoutX="0.32470703125" layoutY="-116.36094665527344" scaleX="0.05" scaleY="0.05" />
+                     </children>
+                  </Group>
+               </graphic>
+            </Button>
+            <Button id="button" fx:id="notification" alignment="TOP_LEFT" graphicTextGap="10.0" layoutX="98.0" layoutY="79.0" mnemonicParsing="false" text="Notifications">
+               <font>
+                  <Font name="Georgia" size="16.0" />
+               </font>
+               <graphic>
+                  <Group>
+                     <children>
+                        <SVGPath id="icon" content="M546.429,393.429V218.572C546.429,97.854,448.574,0,327.857,0S109.286,97.854,109.286,218.572v174.857L21.857,568.286h198.922c10.12,49.878,54.206,87.429,107.078,87.429c52.872,0,96.958-37.551,107.078-87.429h198.922L546.429,393.429z M327.857,612c-28.502,0-52.522-18.294-61.55-43.714h123.121C380.38,593.706,356.359,612,327.857,612z M87.429,524.571L153,393.429V218.572c0-96.565,78.292-174.857,174.857-174.857c96.564,0,174.857,78.292,174.857,174.857v174.857l65.571,131.143H87.429z" scaleX="0.03" scaleY="0.03" />
+                     </children>
+                  </Group>
+               </graphic>
+            </Button>
+            <Button id="button" fx:id="settings" alignment="TOP_LEFT" graphicTextGap="10.0" layoutX="78.0" layoutY="128.0" mnemonicParsing="false" text="Settings">
+               <font>
+                  <Font name="Georgia" size="16.0" />
+               </font>
+               <graphic>
+                  <Group>
+                     <children>
+                        <SVGPath id="icon" content="m13.12 24h-2.24c-.757 0-1.396-.567-1.486-1.32l-.239-1.876c-.477-.155-.937-.346-1.374-.569l-1.494 1.161c-.606.469-1.459.415-1.985-.126l-1.575-1.575c-.537-.521-.591-1.374-.122-1.979l1.161-1.495c-.224-.437-.415-.897-.569-1.374l-1.88-.239c-.75-.092-1.317-.731-1.317-1.488v-2.24c0-.757.567-1.396 1.32-1.486l1.876-.239c.155-.477.346-.937.569-1.374l-1.16-1.494c-.47-.606-.415-1.46.127-1.986l1.575-1.575c.521-.537 1.375-.59 1.979-.122l1.494 1.162c.437-.223.897-.414 1.375-.569l.239-1.88c.09-.75.729-1.317 1.486-1.317h2.24c.757 0 1.396.567 1.486 1.32l.239 1.876c.478.155.938.346 1.375.569l1.494-1.161c.607-.469 1.459-.415 1.985.127l1.575 1.575c.537.521.591 1.374.122 1.979l-1.161 1.495c.224.437.415.897.569 1.374l1.88.239c.749.091 1.316.73 1.316 1.487v2.24c0 .757-.567 1.396-1.32 1.486l-1.876.239c-.155.477-.346.937-.569 1.374l1.161 1.494c.47.606.415 1.459-.127 1.985l-1.575 1.575c-.521.537-1.375.592-1.979.122l-1.495-1.161c-.437.224-.897.415-1.374.569l-.239 1.88c-.091.75-.73 1.317-1.487 1.317zm-5.39-4.86c.083 0 .168.021.244.063.551.308 1.148.556 1.774.736.192.055.333.219.358.417l.28 2.2c.03.251.247.444.494.444h2.24c.247 0 .464-.193.493-.439l.281-2.204c.025-.198.166-.362.358-.417.626-.18 1.223-.428 1.774-.736.175-.098.393-.081.55.042l1.75 1.36c.201.156.483.143.655-.034l1.585-1.585c.181-.176.195-.458.039-.66l-1.36-1.75c-.123-.158-.14-.375-.042-.55.308-.551.556-1.148.736-1.774.055-.192.219-.333.417-.358l2.2-.28c.251-.031.444-.248.444-.495v-2.24c0-.247-.193-.464-.439-.493l-2.204-.281c-.198-.025-.362-.166-.417-.358-.18-.626-.428-1.223-.736-1.774-.098-.175-.082-.392.042-.55l1.36-1.75c.157-.202.143-.484-.033-.654l-1.585-1.585c-.175-.182-.458-.196-.66-.039l-1.75 1.36c-.159.123-.376.14-.551.042-.549-.308-1.146-.555-1.774-.736-.192-.055-.333-.219-.358-.417l-.28-2.2c-.031-.252-.248-.445-.495-.445h-2.24c-.247 0-.464.193-.493.439l-.281 2.204c-.025.198-.166.362-.358.418-.628.18-1.225.428-1.774.735-.175.099-.392.081-.551-.041l-1.75-1.36c-.202-.157-.483-.143-.654.033l-1.585 1.586c-.181.176-.195.458-.039.66l1.36 1.75c.123.158.14.375.042.55-.309.551-.556 1.148-.736 1.774-.055.192-.219.333-.417.358l-2.2.28c-.251.03-.444.247-.444.494v2.24c0 .247.193.464.439.493l2.204.281c.198.025.362.166.417.358.18.626.428 1.223.736 1.774.098.175.082.392-.042.55l-1.36 1.75c-.157.202-.143.484.033.654l1.585 1.585c.175.181.456.195.66.039l1.75-1.36c.091-.068.199-.104.308-.104z" />
+                        <SVGPath id="icon" content="m12 17c-2.757 0-5-2.243-5-5s2.243-5 5-5 5 2.243 5 5-2.243 5-5 5zm0-9c-2.206 0-4 1.794-4 4s1.794 4 4 4 4-1.794 4-4-1.794-4-4-4z" />
+                     </children>
+                  </Group>
+               </graphic>
+            </Button>
+         </children>
+      </VBox>
+   </left>
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #f7f7f7;" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="17.0" layoutY="44.0" text="Folder &gt;" textFill="#c6c6c6" AnchorPane.leftAnchor="17.0">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="22.0" />
+               </font>
+            </Label>
+            <Label layoutX="107.0" layoutY="44.0" text="Synchronization" AnchorPane.leftAnchor="107.0">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="22.0" />
+               </font>
+            </Label>
+            <AnchorPane id="folderChoose_container" layoutX="28.0" layoutY="86.0" prefHeight="317.0" prefWidth="590.0">
+               <children>
+                  <Label layoutX="36.0" layoutY="17.0" text="Choose folders" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="22.0" layoutY="44.0" text="Select your local folder to sync with the cloud folder." textFill="#979797">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Button id="button_inside" layoutX="68.0" layoutY="85.0" mnemonicParsing="false" onAction="#select_remote_directory" prefHeight="25.0" prefWidth="220.0" text="Select Remote Directory" />
+                  <Button id="button_inside" layoutX="302.0" layoutY="85.0" mnemonicParsing="false" onAction="#select_local_directory" prefHeight="25.0" prefWidth="220.0" text="Select Local Directory" />
+                  <Label id="msg_label" fx:id="folderSelection_msgLabel" alignment="CENTER" layoutX="41.0" layoutY="180.0" prefHeight="69.0" prefWidth="503.0" text="msg here" textFill="#6f6f6f" wrapText="true" />
+                  <Button id="button_inside" layoutX="200.0" layoutY="268.0" mnemonicParsing="false" onAction="#start_synchronization" prefHeight="25.0" prefWidth="280.0" text="Start Synchronization" />
+                  <ImageView fitHeight="50.0" fitWidth="25.0" layoutX="69.0" layoutY="127.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/folder.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="102.0" layoutY="130.0" text="Office Work">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="50.0" fitWidth="25.0" layoutX="306.0" layoutY="126.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/folder.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="339.0" layoutY="129.0" text="Archive">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <Hyperlink layoutX="222.0" layoutY="126.0" onAction="#copy_officeWork_path" text="Copy Path" />
+                  <Hyperlink layoutX="451.0" layoutY="126.0" onAction="#copy_archive_path" text="Copy Path" />
+               </children>
+               <effect>
+                  <Lighting diffuseConstant="1.37" specularConstant="1.37" specularExponent="33.49" surfaceScale="0.0">
+                     <bumpInput>
+                        <Shadow />
+                     </bumpInput>
+                     <light>
+                        <Light.Distant />
+                     </light>
+                  </Lighting>
+               </effect>
+            </AnchorPane>
+            <TableView id="tableview" fx:id="file_tableView" layoutX="29.0" layoutY="427.0" prefHeight="234.0" prefWidth="589.0">
+              <columns>
+                <TableColumn id="table_heading" fx:id="file_column" prefWidth="228.0" resizable="false" text="FILE" />
+                <TableColumn id="table_heading" fx:id="size_column" prefWidth="183.0" resizable="false" text="SIZE" />
+                  <TableColumn id="table_heading" fx:id="status_column" prefWidth="183.0" resizable="false" text="STATUS" />
+              </columns>
+            </TableView>
+         </children>
+      </AnchorPane>
+   </center>
+   <right>
+      <VBox alignment="CENTER" prefHeight="720.0" prefWidth="462.0" spacing="20.0" style="-fx-background-color: #f7f7f7;" BorderPane.alignment="CENTER">
+         <children>
+            <LineChart id="upload_lineChart" fx:id="upload_chart" horizontalGridLinesVisible="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="309.0" prefWidth="444.0">
+              <xAxis>
+                <CategoryAxis id="upload_lineColor" gapStartAndEnd="false" side="RIGHT" tickLabelsVisible="false" tickMarkVisible="false" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis id="upload_lineColor" autoRanging="false" forceZeroInRange="false" minorTickVisible="false" side="TOP" style="-fx-background-color: white;" tickLabelsVisible="false" tickMarkVisible="false" />
+              </yAxis>
+            </LineChart>
+            <LineChart id="download_lineChart" fx:id="download_chart" horizontalGridLinesVisible="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="309.0" prefWidth="444.0">
+               <xAxis>
+                  <CategoryAxis gapStartAndEnd="false" side="RIGHT" style="-fx-background-color: white;" tickLabelsVisible="false" tickMarkVisible="false" />
+               </xAxis>
+               <yAxis>
+                  <NumberAxis forceZeroInRange="false" minorTickVisible="false" side="TOP" style="-fx-background-color: white;" tickLabelsVisible="false" tickMarkVisible="false" />
+               </yAxis>
+            </LineChart>
+            <AnchorPane id="storage_container" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="175.0" prefWidth="425.0">
+               <children>
+                  <Arc fx:id="storage_ProgressIndicator" fill="#1f93ff00" layoutX="313.0" layoutY="113.0" length="234.0" radiusX="90.0" radiusY="90.0" startAngle="90.0" strokeLineCap="BUTT" strokeLineJoin="ROUND" strokeType="INSIDE" strokeWidth="30.0">
+                     <stroke>
+                        <LinearGradient endX="0.5238095238095238" endY="1.0" startX="1.0">
+                           <stops>
+                              <Stop>
+                                 <color>
+                                    <Color green="0.7372549176216125" blue="0.45098039507865906" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="0.007662835249042145">
+                                 <color>
+                                    <Color green="0.7372549176216125" blue="0.45098039507865906" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="1.0">
+                                 <color>
+                                    <Color red="0.7277777791023254" green="1.0" blue="0.7083333134651184" />
+                                 </color>
+                              </Stop>
+                           </stops>
+                        </LinearGradient>
+                     </stroke>
+                  </Arc>
+                  <Label layoutX="25.0" layoutY="23.0" text="Storage">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="storage_value" layoutX="25.0" layoutY="51.0" text="100 ">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="42.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="storage_metaSize" layoutX="102.0" layoutY="74.0" text="GB" textFill="#656565">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="25.0" layoutY="144.0" text="Used:" textFill="#656565">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="25.0" layoutY="172.0" text="Free:" textFill="#656565">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="used_storage" layoutX="90.0" layoutY="144.0" prefHeight="17.0" prefWidth="100.0" text="56.2 GB" wrapText="true">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="free_storage" layoutX="90.0" layoutY="172.0" prefHeight="17.0" prefWidth="100.0" text="43.8 GB" textFill="#00bc73" wrapText="true">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Line endX="59.0" layoutX="90.0" layoutY="122.0" startX="-63.0" stroke="#8d8d8d" />
+                  <Label fx:id="storage_percentage" alignment="CENTER" layoutX="222.0" layoutY="17.0" prefHeight="186.0" prefWidth="182.0" text="65%">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="36.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </children>
+      </VBox>
+   </right>
+</BorderPane>

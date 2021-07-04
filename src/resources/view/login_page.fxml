@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.SVGPath?>
+<?import javafx.scene.text.Font?>
+
+<SplitPane id="root" dividerPositions="0.36716791979949875" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" stylesheets="@loginPage_green.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Connect">
+  <items>
+    <AnchorPane id="bg_image" minHeight="0.0" minWidth="0.0" prefHeight="598.0" prefWidth="344.0">
+         <children>
+            <Group layoutX="-50.0" layoutY="88.0">
+               <children>
+                  <SVGPath content="M343.5,179.6c-9-47.7-47.9-83.6-94.5-83.6c-41.2,0-76.4,28.4-90.2,67.8C52.2,145.4,34.7,321.4,147,325.4c4.7,0,9.3-0.3,13.6-1c87.1-12.6,96.7-145.8,181.9-144.7c0.4,0,0.7,0,1.1,0L343.5,179.6z" scaleX="0.5" scaleY="0.5">
+                     <fill>
+                        <LinearGradient endX="0.7047619047619047" startY="1.0">
+                           <stops>
+                              <Stop>
+                                 <color>
+                                    <Color red="0.8684210777282715" green="0.8684210777282715" blue="0.8684210777282715" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="1.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </Stop>
+                           </stops>
+                        </LinearGradient>
+                     </fill>
+                  </SVGPath>
+                  <SVGPath content="M350,74.7c0,0.3-0.1,0.6-0.1,0.9c0.2,5-1.4,9.6-3.9,13.9c-1.4,2.4-2.9,4.8-4,7.3c-3.6,7.8-2.5,15.4,1.6,22.7c2.2,3.9,5.3,7.1,9.2,9.9c2.5-5.1,6.2-9.4,5.8-15.5c-0.3-5.1-0.1-10.3-0.1-15.7c0.8,6,1.7,11.9,2.5,18c0.6-0.5,1.1-0.9,1.6-1.3c2.7-2,5.3-4.2,8.1-6c1.4-0.9,1.8-1.7,1.5-3.3c-0.8-5.2-3.1-9.9-6-14.2c-4.1-6.2-9.3-11.5-15.1-16.2c-0.2-0.2-0.5-0.4-0.8-0.6C350.4,74.7,350.2,74.7,350,74.7z" layoutX="-79.0" layoutY="65.0" scaleX="0.5" scaleY="0.5">
+                     <fill>
+                        <LinearGradient endX="0.5047619047619047" endY="0.3761904761904762" startY="1.0">
+                           <stops>
+                              <Stop>
+                                 <color>
+                                    <Color red="0.8157894611358643" green="0.8157894611358643" blue="0.8157894611358643" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="1.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </Stop>
+                           </stops>
+                        </LinearGradient>
+                     </fill>
+                  </SVGPath>
+                  <SVGPath content="M439.6,102.4c-3.2-0.4-6.1-0.8-9.1-1c-15-1.3-29.8-0.9-44.3,3.7c-9.1,2.9-17.1,7.5-22.8,15.4c-5.3,7.5-8.4,15.9-10,24.9c-0.7,4.2-1.1,8.5-1.4,13c14.4-15.9,31.3-28.5,49.5-39.4c-16.5,13-31.7,27.1-43.2,45.1c0.5,0.3,0.9,0.5,1.2,0.6c13.6,3.5,27,3.7,39.9-2.7c10.5-5.2,18.1-13.1,21.8-24.4c1.4-4.4,2.7-8.8,4-13.2c2.4-8.2,6.9-15,13.4-20.6c0.2-0.2,0.4-0.3,0.6-0.5C439.2,103,439.3,102.9,439.6,102.4z" layoutX="-94.0" layoutY="40.0" scaleX="0.5" scaleY="0.5">
+                     <fill>
+                        <LinearGradient endX="0.5047619047619047" endY="0.3761904761904762" startY="1.0">
+                           <stops>
+                              <Stop>
+                                 <color>
+                                    <Color red="0.8157894611358643" green="0.8157894611358643" blue="0.8157894611358643" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="1.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </Stop>
+                           </stops>
+                        </LinearGradient>
+                     </fill>
+                  </SVGPath>
+                  <SVGPath content="M160.5,324.4c87.1-12.6,96.7-145.8,181.9-144.7c0.4,0,0.7,0,1.1,0c106.1,2.2,86.3,144.2,10,144.8C293,324.9,160.5,324.4,160.5,324.4" layoutX="-48.0" layoutY="-20.0" scaleX="0.5" scaleY="0.5">
+                     <fill>
+                        <LinearGradient endX="0.7047619047619047" startY="1.0">
+                           <stops>
+                              <Stop>
+                                 <color>
+                                    <Color red="0.8684210777282715" green="0.8684210777282715" blue="0.8684210777282715" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="1.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </Stop>
+                           </stops>
+                        </LinearGradient>
+                     </fill>
+                  </SVGPath>
+               </children>
+            </Group>
+         </children></AnchorPane>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+         <children>
+            <ComboBox id="combo_box" fx:id="language_box" layoutX="453.0" layoutY="29.0" prefWidth="150.0" />
+            <VBox alignment="CENTER" layoutX="81.0" layoutY="91.0" prefHeight="434.0" prefWidth="372.0" spacing="20.0">
+               <children>
+                  <HBox prefHeight="24.0" prefWidth="372.0">
+                     <children>
+                        <Label text="Connect with Leviia">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="24.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="25.0" prefWidth="372.0">
+                     <children>
+                        <Label text="Don't have an account?" textFill="#575656">
+                           <font>
+                              <Font name="Arial" size="13.0" />
+                           </font>
+                        </Label>
+                        <Hyperlink onAction="#sign_up" text="Sign Up" textFill="#00bc73">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="16.0" />
+                           </font>
+                        </Hyperlink>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="-20.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <TextField id="username_field" fx:id="username_input" prefHeight="25.0" prefWidth="315.0" promptText="User name">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="14.0" />
+                     </font>
+                  </TextField>
+                  <PasswordField id="password_field" fx:id="pass_input" prefHeight="25.0" prefWidth="315.0" promptText="Password">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="14.0" />
+                     </font>
+                  </PasswordField>
+                  <TextField id="host_name" fx:id="hostName_input" prefHeight="25.0" prefWidth="315.0" promptText="Host name">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="14.0" />
+                     </font>
+                  </TextField>
+                  <Button id="connect_btn" mnemonicParsing="false" onAction="#connect" prefHeight="25.0" prefWidth="380.0" text="Test Connection">
+                     <font>
+                        <Font name="Arial Narrow" size="14.0" />
+                     </font>
+                  </Button>
+                  <Label id="msg" fx:id="msg_label" alignment="CENTER" prefWidth="235.0" text="msg">
+                     <font>
+                        <Font name="Arial Narrow" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+  </items>
+</SplitPane>

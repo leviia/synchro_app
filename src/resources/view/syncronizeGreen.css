@@ -1,0 +1,121 @@
+#header{
+    -fx-background-color: #00BC73;
+    -fx-pref-width: 1280;
+    -fx-pref-height: 80;
+    -fx-background-radius: 20px 20px 0px 0px;
+    -fx-border-radius: 20px 20px 0px 0px;
+}
+
+#background{
+    -fx-background-color: white;
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+    -fx-pref-width: 1280;
+    -fx-pref-height: 850;
+}
+
+#leftSide_container{
+    -fx-border-color: #cfcfcf;
+    -fx-background-color: white;
+}
+
+#button{
+    -fx-background-color: white;
+    -fx-pref-width: 180;
+    -fx-pref-height: 40;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-alignment: center_left;
+}
+
+#button:hover{
+    -fx-text-fill: #00BC73;
+    -fx-background-color: #f0eded;
+}
+
+#icon{
+    -fx-fill: black;
+}
+
+#icon:hover{
+    -fx-fill: #00BC73;
+}
+
+#folderChoose_container{
+    -fx-background-color: white;
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+    -fx-border-color: #f0eded;
+}
+
+#button_inside{
+    -fx-background-color: #00BC73;
+    -fx-text-fill: white;
+    -fx-background-radius: 15;
+    -fx-border-radius: 15;
+    -fx-pref-width: 220;
+    -fx-pref-height: 35;
+}
+
+#button_inside:hover{
+    -fx-background-color: rgba(0, 188, 115, .4);
+}
+
+#msg_label{
+    -fx-background-color: white;
+    -fx-background-radius: 20;
+    -fx-border-color: #f0eded;
+    -fx-border-radius: 20;
+}
+
+#table_heading{
+    -fx-background-color: #f0eded;
+
+}
+
+#tableview{
+    -fx-background-color: white;
+    -fx-background-radius: 20;
+    -fx-border-color: #f0eded;
+    -fx-border-radius: 20;
+}
+
+#download_lineChart{
+    -fx-background-color: white;
+    -fx-background-radius: 20;
+    -fx-border-color: #f0eded;
+    -fx-border-radius: 20;
+    -fx-text-fill: #00BC73;
+    -fx-horizontal-grid-lines-visible: false;
+    -fx-alternative-column-fill-visible: false;
+    -fx-alternative-row-fill-visible: false;
+    -fx-pref-width: 425;
+    -fx-pref-height: 225;
+}
+#upload_lineChart{
+    -fx-background-color: white;
+    -fx-background-radius: 20;
+    -fx-border-color: #f0eded;
+    -fx-border-radius: 20;
+    -fx-pref-width: 425;
+    -fx-pref-height: 225;
+    -fx-stroke-width: 2px;
+}
+
+#upload_lineColor{
+    -fx-stroke: #00BC73;
+}
+
+#storage_container{
+    -fx-background-color: white;
+    -fx-border-color: #f0eded;
+    -fx-border-radius: 20;
+    -fx-background-radius: 20;
+    -fx-pref-width: 425;
+    -fx-pref-height: 225;
+}
+
+.default-color0.chart-series-line { -fx-stroke: #00BC73; }
+
+.default-color0.chart-line-symbol{-fx-background-color: #00BC73, #ffffff;
+}

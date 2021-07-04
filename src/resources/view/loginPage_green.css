@@ -1,0 +1,81 @@
+#combo_box{
+    -fx-background-color: #e3e3e3;
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+}
+
+#bg_image{
+    -fx-background-color: #00BC73;
+}
+
+#root{
+    -fx-background-color: white;
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+}
+
+#username_field{
+    -fx-background-color: #f5f5f5;
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+    -fx-pref-height: 40;
+}
+#username_field:focused{
+    -fx-background-color: white;
+    -fx-background-radius: 20;
+    -fx-border-color: #00BC73;
+    -fx-border-radius: 20;
+    -fx-pref-height: 40;
+}
+
+#password_field{
+    -fx-background-color: #f5f5f5;
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+    -fx-pref-height: 40;
+}
+#password_field:focused{
+    -fx-background-color: white;
+    -fx-background-radius: 20;
+    -fx-border-color: #00BC73;
+    -fx-border-radius: 20;
+    -fx-pref-height: 40;
+}
+
+#host_name{
+    -fx-background-color: #f5f5f5;
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+    -fx-pref-height: 40;
+}
+#host_name:focused{
+    -fx-background-color: white;
+    -fx-background-radius: 20;
+    -fx-border-color: #00BC73;
+    -fx-border-radius: 20;
+    -fx-pref-height: 40;
+}
+
+#connect_btn{
+    -fx-background-color: #00BC73;
+    -fx-text-fill: white;
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+    -fx-pref-height: 30;
+}
+#connect_btn:hover{
+    -fx-background-color: rgba(0, 188, 115, .5);
+    -fx-text-fill: white;
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+    -fx-pref-height: 30;
+}
+
+#msg{
+    -fx-background-color: rgba(0, 188, 115, .4);
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+    -fx-pref-width: 300;
+    -fx-pref-height: 40;
+    -fx-text-color: rgb(68, 68, 68);
+}
