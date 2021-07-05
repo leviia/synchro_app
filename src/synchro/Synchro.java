@@ -17,6 +17,8 @@ import java.util.List;
 import java.util.function.IntFunction;
 import java.util.stream.Collectors;
 
+import org.aarboard.nextcloud.api.NextcloudConnector;
+
 import com.github.sardine.DavResource;
 import com.github.sardine.Sardine;
 import com.github.sardine.SardineFactory;
@@ -43,8 +45,10 @@ public class Synchro {
 
 
 
-	public Synchro(String text, String text2, String text3) {
+	public Synchro(String un, String up, String hostname) {
 		// TODO Auto-generated constructor stub
+
+		
 	}
 
 	private void load_remote_cache() {

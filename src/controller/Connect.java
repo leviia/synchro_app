@@ -18,7 +18,11 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import application.Main;
+
 public class Connect {
+	
+	private static boolean cont = false;
 
     @FXML
     private ComboBox<String> language_box; // comboBox for language selection.
@@ -47,6 +51,11 @@ public class Connect {
     @FXML
     void connect(ActionEvent event) {
         //TODO: when you press Test Connection Button.
+    	if (cont) {
+    		Main.getInstance().replaceSceneContent("/resources/view/syncronize.fxml");
+    		return;
+    	}
+    	
     	
     	Synchro sync = new synchro.Synchro(username_input.getText(),pass_input.getText(),hostName_input.getText());
     	
@@ -54,7 +63,9 @@ public class Connect {
     	connect_btn.setText("continue");
     	msg_label.setText("Success");
     	msg_label.setVisible(true);
+    	cont = true;
     	}
+    	
 //    	else {
 //    		msg_label.setText("Error");
 //    		msg_label.setBackground(new Background(new BackgroundFill(Color.RED, null, null)));

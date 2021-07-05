@@ -1,5 +1,24 @@
 package controller;
 
+import java.awt.image.BufferedImage;
+import java.io.BufferedInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URL;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.net.http.HttpResponse.BodyHandler;
+import java.nio.channels.Channels;
+import java.nio.channels.ReadableByteChannel;
+
+import javax.imageio.ImageIO;
+
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.chart.LineChart;
@@ -7,6 +26,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.image.Image;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Arc;
 import javafx.scene.shape.Circle;
 
@@ -69,9 +90,31 @@ public class Synchronize {
     @FXML
     void initialize(){
         update_StorageIndicator(65);
+        update_Avatar();
     }
 
-    /**
+    private void update_Avatar() {
+
+    	BufferedImage image = null;
+		try {
+			URL url = new URL("https://cloud.leviia.com/avatar/leviia/32?v=0");
+			InputStream in = new BufferedInputStream(url.openStream());
+	    	image = ImageIO.read(in);
+	    	profile_picture.setFill(new ImagePattern(SwingFXUtils.toFXImage(image, null)));
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+	/**
      * @Syed Suleman Shah
      * by changing the length of Arc you can see the effect of progress Indicator.
      * @param percentageValue

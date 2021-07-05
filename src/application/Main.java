@@ -1,5 +1,7 @@
 package application;
 	
+import java.io.IOException;
+
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -15,14 +17,34 @@ import javafx.scene.paint.Color;
 public class Main extends Application {
     private double xOffset = 0;
     private double yOffset = 0;
+    private Stage stage;
+    
+    private static Main instance;
 
+    public Main() {
+        instance = this;
+    }
+
+    public static Main getInstance() {
+        return instance;
+    }
+    
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-
+		
+		stage = primaryStage;
+		replaceSceneContent("/resources/view/login_page.fxml");
+        stage.initStyle(StageStyle.TRANSPARENT);
+        stage.show();
+	}
+	
+	public static void main(String[] args) {
+		launch(args);
+	}
+	
+    public boolean replaceSceneContent(String fxml) {
 		try {
-			
-			//Parent root = FXMLLoader.load(getClass().getResource("/resources/view/syncronize.fxml"));
-			Parent root = FXMLLoader.load(getClass().getResource("/resources/view/login_page.fxml"));
+			Parent root = FXMLLoader.load(getClass().getResource(fxml));
 			root.setOnMousePressed(new EventHandler<MouseEvent>() {
 	            @Override
 	            public void handle(MouseEvent event) {
@@ -33,22 +55,20 @@ public class Main extends Application {
 	        root.setOnMouseDragged(new EventHandler<MouseEvent>() {
 	            @Override
 	            public void handle(MouseEvent event) {
-	                primaryStage.setX(event.getScreenX() - xOffset);
-	                primaryStage.setY(event.getScreenY() - yOffset);
+	                stage.setX(event.getScreenX() - xOffset);
+	                stage.setY(event.getScreenY() - yOffset);
 	            }
 	        });
 			Scene primaryScene = new Scene(root);
 			primaryScene.setFill(Color.TRANSPARENT);
-	        primaryStage.setScene(primaryScene);
-	        
-	        primaryStage.initStyle(StageStyle.TRANSPARENT);
-	        primaryStage.show();
-		} catch(Exception e) {
+	        stage.setScene(primaryScene);
+	        return true;
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
+		
+		return false;
+    }
 	
-	public static void main(String[] args) {
-		launch(args);
-	}
 }
