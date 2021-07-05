@@ -78,12 +78,10 @@
 }
 
 #msg{
-    -fx-background-color: rgba(0, 188, 115, .4);
-    -fx-background-radius: 20;
-    -fx-border-radius: 20;
+    -fx-background-color: transparent;
     -fx-pref-width: 400;
     -fx-pref-height: 50;
-    -fx-text-color: rgb(68, 68, 68);
+    /* -fx-text-fill: WHITE; */
 }
 
 #minimize_btn{

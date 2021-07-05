@@ -61,16 +61,17 @@ public class Connect {
     	
     	if (sync.test_sync()) {
     	connect_btn.setText("continue");
-    	msg_label.setText("Success");
+    	msg_label.setTextFill(Color.rgb(0, 188, 115));
+    	msg_label.setText("Success !");
     	msg_label.setVisible(true);
     	cont = true;
     	}
     	
-//    	else {
-//    		msg_label.setText("Error");
-//    		msg_label.setBackground(new Background(new BackgroundFill(Color.RED, null, null)));
-//        	msg_label.setVisible(true);
-//    	}
+    	else {
+    		msg_label.setText("Error, check inputs");
+    		msg_label.setTextFill(Color.RED);
+        	msg_label.setVisible(true);
+    	}
     }
 
     @FXML

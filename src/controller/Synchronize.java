@@ -18,6 +18,7 @@ import java.nio.channels.ReadableByteChannel;
 
 import javax.imageio.ImageIO;
 
+import application.Main;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -139,6 +140,17 @@ public class Synchronize {
     @FXML
     void start_synchronization(ActionEvent event) {
 
+    }
+    
+    @FXML
+    void minimize_app(ActionEvent event) {
+        //Stage stage = (Stage) msg_label.getScene().getWindow();
+        Main.getInstance().stage.toBack();
+        //stage.toBack();
+    }
+    @FXML
+    void close_application(ActionEvent event) {
+        System.exit(0);
     }
 
 }

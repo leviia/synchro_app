@@ -71,7 +71,7 @@
                         <Font name="Arial Narrow" size="14.0" />
                      </font>
                   </Button>
-                  <Label id="msg" fx:id="msg_label" alignment="CENTER" prefWidth="235.0" text="msg">
+                  <Label id="msg" fx:id="msg_label" alignment="CENTER" prefWidth="235.0" text="Success !" textFill="#00bc73" visible="false">
                      <font>
                         <Font name="Arial Narrow" size="18.0" />
                      </font>

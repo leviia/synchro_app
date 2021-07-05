@@ -126,3 +126,18 @@
     -fx-border-radius: 20;
     -fx-pref-width: 590;
 }
+
+#minimize_btn{
+    -fx-background-color: transparent;
+}
+#minimize_btn:hover{
+    -fx-background-color: transparent;
+    -fx-text-fill: red;
+}
+#close_btn{
+    -fx-background-color: transparent;
+}
+#close_btn:hover{
+    -fx-background-color: transparent;
+    -fx-text-fill: red;
+}
