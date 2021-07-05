@@ -17,7 +17,7 @@ import javafx.scene.paint.Color;
 public class Main extends Application {
     private double xOffset = 0;
     private double yOffset = 0;
-    private Stage stage;
+    public Stage stage;
     
     private static Main instance;
 

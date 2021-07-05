@@ -59,7 +59,7 @@ public class Connect {
     	
     	Synchro sync = new synchro.Synchro(username_input.getText(),pass_input.getText(),hostName_input.getText());
     	
-    	if (sync.test_sync(username_input.getText(), pass_input.getText(), hostName_input.getText())) {
+    	if (sync.test_sync()) {
     	connect_btn.setText("continue");
     	msg_label.setText("Success");
     	msg_label.setVisible(true);
@@ -89,5 +89,15 @@ public class Connect {
 //			}
 //    	}
     	
+    }
+    @FXML
+    void minimize_app(ActionEvent event) {
+        //Stage stage = (Stage) msg_label.getScene().getWindow();
+        Main.getInstance().stage.toBack();
+        //stage.toBack();
+    }
+    @FXML
+    void close_application(ActionEvent event) {
+        System.exit(0);
     }
 }

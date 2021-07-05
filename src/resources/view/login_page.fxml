@@ -7,9 +7,9 @@
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
@@ -18,9 +18,71 @@
 <?import javafx.scene.shape.SVGPath?>
 <?import javafx.scene.text.Font?>
 
-<SplitPane id="root" dividerPositions="0.36716791979949875" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" stylesheets="@loginPage_green.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Connect">
-  <items>
-    <AnchorPane id="bg_image" minHeight="0.0" minWidth="0.0" prefHeight="598.0" prefWidth="344.0">
+<BorderPane id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" stylesheets="@loginPage_green.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Connect">
+   <center>
+      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="400.0" prefWidth="202.0" BorderPane.alignment="CENTER">
+         <children>
+            <ComboBox id="combo_box" fx:id="language_box" layoutX="453.0" layoutY="29.0" prefWidth="150.0" />
+            <VBox alignment="CENTER" layoutX="81.0" layoutY="91.0" prefHeight="434.0" prefWidth="372.0" spacing="20.0">
+               <children>
+                  <HBox prefHeight="24.0" prefWidth="372.0">
+                     <children>
+                        <Label text="Connect with Leviia">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="24.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="25.0" prefWidth="372.0">
+                     <children>
+                        <Label text="Don't have an account?" textFill="#575656">
+                           <font>
+                              <Font name="Arial" size="13.0" />
+                           </font>
+                        </Label>
+                        <Hyperlink onAction="#sign_up" text="Sign Up" textFill="#00bc73">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="16.0" />
+                           </font>
+                        </Hyperlink>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="-20.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <TextField id="username_field" fx:id="username_input" prefHeight="25.0" prefWidth="315.0" promptText="User name">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="14.0" />
+                     </font>
+                  </TextField>
+                  <PasswordField id="password_field" fx:id="pass_input" prefHeight="25.0" prefWidth="315.0" promptText="Password">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="14.0" />
+                     </font>
+                  </PasswordField>
+                  <TextField id="host_name" fx:id="hostName_input" prefHeight="25.0" prefWidth="315.0" promptText="Host name">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="14.0" />
+                     </font>
+                  </TextField>
+                  <Button id="connect_btn" fx:id="connect_btn" mnemonicParsing="false" onAction="#connect" prefHeight="25.0" prefWidth="380.0" text="Test Connection">
+                     <font>
+                        <Font name="Arial Narrow" size="14.0" />
+                     </font>
+                  </Button>
+                  <Label id="msg" fx:id="msg_label" alignment="CENTER" prefWidth="235.0" text="msg">
+                     <font>
+                        <Font name="Arial Narrow" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </center>
+   <left>
+      <AnchorPane id="bg_image" minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="350.0" BorderPane.alignment="CENTER">
          <children>
             <Group layoutX="-50.0" layoutY="88.0">
                <children>
@@ -98,66 +160,15 @@
                   </SVGPath>
                </children>
             </Group>
-         </children></AnchorPane>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-         <children>
-            <ComboBox id="combo_box" fx:id="language_box" layoutX="453.0" layoutY="29.0" prefWidth="150.0" />
-            <VBox alignment="CENTER" layoutX="81.0" layoutY="91.0" prefHeight="434.0" prefWidth="372.0" spacing="20.0">
-               <children>
-                  <HBox prefHeight="24.0" prefWidth="372.0">
-                     <children>
-                        <Label text="Connect with Leviia">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="24.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER_LEFT" prefHeight="25.0" prefWidth="372.0">
-                     <children>
-                        <Label text="Don't have an account?" textFill="#575656">
-                           <font>
-                              <Font name="Arial" size="13.0" />
-                           </font>
-                        </Label>
-                        <Hyperlink onAction="#sign_up" text="Sign Up" textFill="#00bc73">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="16.0" />
-                           </font>
-                        </Hyperlink>
-                     </children>
-                     <VBox.margin>
-                        <Insets top="-20.0" />
-                     </VBox.margin>
-                  </HBox>
-                  <TextField id="username_field" fx:id="username_input" prefHeight="25.0" prefWidth="315.0" promptText="User name">
-                     <font>
-                        <Font name="Arial Rounded MT Bold" size="14.0" />
-                     </font>
-                  </TextField>
-                  <PasswordField id="password_field" fx:id="pass_input" prefHeight="25.0" prefWidth="315.0" promptText="Password">
-                     <font>
-                        <Font name="Arial Rounded MT Bold" size="14.0" />
-                     </font>
-                  </PasswordField>
-                  <TextField id="host_name" fx:id="hostName_input" prefHeight="25.0" prefWidth="315.0" promptText="Host name">
-                     <font>
-                        <Font name="Arial Rounded MT Bold" size="14.0" />
-                     </font>
-                  </TextField>
-                  <Button id="connect_btn" fx:id="connect_btn" mnemonicParsing="false" onAction="#connect" prefHeight="25.0" prefWidth="380.0" text="Test Connection">
-                     <font>
-                        <Font name="Arial Narrow" size="14.0" />
-                     </font>
-                  </Button>
-                  <Label id="msg" fx:id="msg_label" alignment="CENTER" prefWidth="235.0" text="msg">
-                     <font>
-                        <Font name="Arial Narrow" size="18.0" />
-                     </font>
-                  </Label>
-               </children>
-            </VBox>
+            <Button id="close_btn" layoutX="14.0" layoutY="10.0" mnemonicParsing="false" onAction="#close_application" text="X" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font></Button>
+            <Button id="minimize_btn" layoutX="45.0" layoutY="-9.0" mnemonicParsing="false" onAction="#minimize_app" prefHeight="45.0" prefWidth="25.0" text="_" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font></Button>
          </children>
       </AnchorPane>
-  </items>
-</SplitPane>
+   </left>
+</BorderPane>

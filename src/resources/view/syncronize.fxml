@@ -8,8 +8,6 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
 <?import javafx.scene.effect.Light.Distant?>
 <?import javafx.scene.effect.Lighting?>
 <?import javafx.scene.effect.Shadow?>
@@ -17,6 +15,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.paint.LinearGradient?>
@@ -179,7 +178,7 @@
                   <Font name="Arial Rounded MT Bold" size="22.0" />
                </font>
             </Label>
-            <Label layoutX="107.0" layoutY="44.0" text="Synchronization" AnchorPane.leftAnchor="107.0">
+            <Label layoutX="110.0" layoutY="44.0" text="Synchronization" AnchorPane.leftAnchor="110.0">
                <font>
                   <Font name="Arial Rounded MT Bold" size="22.0" />
                </font>
@@ -196,10 +195,10 @@
                         <Font name="Arial Rounded MT Bold" size="14.0" />
                      </font>
                   </Label>
-                  <Button id="button_inside" layoutX="68.0" layoutY="85.0" mnemonicParsing="false" onAction="#select_remote_directory" prefHeight="25.0" prefWidth="220.0" text="Select Remote Directory" />
-                  <Button id="button_inside" layoutX="302.0" layoutY="85.0" mnemonicParsing="false" onAction="#select_local_directory" prefHeight="25.0" prefWidth="220.0" text="Select Local Directory" />
+                  <Button id="button_inside" layoutX="51.0" layoutY="85.0" mnemonicParsing="false" onAction="#select_remote_directory" prefHeight="25.0" prefWidth="237.0" text="Select Remote Directory" />
+                  <Button id="button_inside" layoutX="302.0" layoutY="85.0" mnemonicParsing="false" onAction="#select_local_directory" prefHeight="25.0" prefWidth="233.0" text="Select Local Directory" />
                   <Label id="msg_label" fx:id="folderSelection_msgLabel" alignment="CENTER" layoutX="41.0" layoutY="180.0" prefHeight="69.0" prefWidth="503.0" text="msg here" textFill="#6f6f6f" wrapText="true" />
-                  <Button id="button_inside" layoutX="200.0" layoutY="268.0" mnemonicParsing="false" onAction="#start_synchronization" prefHeight="25.0" prefWidth="280.0" text="Start Synchronization" />
+                  <Button id="button_inside" layoutX="36.0" layoutY="268.0" mnemonicParsing="false" onAction="#start_synchronization" prefHeight="25.0" prefWidth="513.0" text="Start Synchronization" textFill="#f8f8f8" />
                   <ImageView fitHeight="50.0" fitWidth="25.0" layoutX="69.0" layoutY="127.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@img/folder.png" />
@@ -234,33 +233,52 @@
                   </Lighting>
                </effect>
             </AnchorPane>
-            <TableView id="tableview" fx:id="file_tableView" layoutX="29.0" layoutY="427.0" prefHeight="234.0" prefWidth="589.0">
-              <columns>
-                <TableColumn id="table_heading" fx:id="file_column" prefWidth="228.0" resizable="false" text="FILE" />
-                <TableColumn id="table_heading" fx:id="size_column" prefWidth="183.0" resizable="false" text="SIZE" />
-                  <TableColumn id="table_heading" fx:id="status_column" prefWidth="183.0" resizable="false" text="STATUS" />
-              </columns>
-            </TableView>
+            <VBox id="files_tableView" fx:id="files_tableView" alignment="TOP_CENTER" layoutX="28.0" layoutY="422.0" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="320.0" prefWidth="590.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="570.0" style="-fx-background-color: #f8f8f8;">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="96.0" prefWidth="200.0" text="FILE" textFill="#8a8a8a">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="96.0" prefWidth="200.0" text="SIZE" textFill="#8a8a8a">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="210.0" layoutY="10.0" prefHeight="96.0" prefWidth="200.0" text="STATUS" textFill="#8a8a8a">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="12.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                  </HBox>
+               </children>
+            </VBox>
          </children>
       </AnchorPane>
    </center>
    <right>
-      <VBox alignment="CENTER" prefHeight="720.0" prefWidth="462.0" spacing="20.0" style="-fx-background-color: #f7f7f7;" BorderPane.alignment="CENTER">
+      <VBox id="rightSide_container" alignment="CENTER" prefHeight="720.0" prefWidth="462.0" spacing="20.0" BorderPane.alignment="CENTER">
          <children>
             <LineChart id="upload_lineChart" fx:id="upload_chart" horizontalGridLinesVisible="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="309.0" prefWidth="444.0">
               <xAxis>
                 <CategoryAxis id="upload_lineColor" gapStartAndEnd="false" side="RIGHT" tickLabelsVisible="false" tickMarkVisible="false" />
               </xAxis>
               <yAxis>
-                <NumberAxis id="upload_lineColor" autoRanging="false" forceZeroInRange="false" minorTickVisible="false" side="TOP" style="-fx-background-color: white;" tickLabelsVisible="false" tickMarkVisible="false" />
+                <NumberAxis id="upload_lineColor" autoRanging="false" forceZeroInRange="false" minorTickVisible="false" side="TOP" tickLabelsVisible="false" tickMarkVisible="false" />
               </yAxis>
             </LineChart>
             <LineChart id="download_lineChart" fx:id="download_chart" horizontalGridLinesVisible="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="309.0" prefWidth="444.0">
                <xAxis>
-                  <CategoryAxis gapStartAndEnd="false" side="RIGHT" style="-fx-background-color: white;" tickLabelsVisible="false" tickMarkVisible="false" />
+                  <CategoryAxis gapStartAndEnd="false" side="RIGHT" tickLabelsVisible="false" tickMarkVisible="false" />
                </xAxis>
                <yAxis>
-                  <NumberAxis forceZeroInRange="false" minorTickVisible="false" side="TOP" style="-fx-background-color: white;" tickLabelsVisible="false" tickMarkVisible="false" />
+                  <NumberAxis forceZeroInRange="false" minorTickVisible="false" side="TOP" tickLabelsVisible="false" tickMarkVisible="false" />
                </yAxis>
             </LineChart>
             <AnchorPane id="storage_container" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="175.0" prefWidth="425.0">
@@ -298,7 +316,7 @@
                         <Font name="Arial Rounded MT Bold" size="42.0" />
                      </font>
                   </Label>
-                  <Label fx:id="storage_metaSize" layoutX="102.0" layoutY="74.0" text="GB" textFill="#656565">
+                  <Label fx:id="storage_metaSize" layoutX="104.0" layoutY="74.0" text="GB" textFill="#656565">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="14.0" />
                      </font>
@@ -324,7 +342,7 @@
                      </font>
                   </Label>
                   <Line endX="59.0" layoutX="90.0" layoutY="122.0" startX="-63.0" stroke="#8d8d8d" />
-                  <Label fx:id="storage_percentage" alignment="CENTER" layoutX="222.0" layoutY="17.0" prefHeight="186.0" prefWidth="182.0" text="65%">
+                  <Label fx:id="storage_percentage" alignment="CENTER" layoutX="222.0" layoutY="22.0" prefHeight="181.0" prefWidth="182.0" text="65%">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="36.0" />
                      </font>

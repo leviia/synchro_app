@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<HBox id="even" fx:id="root" alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="590.0" stylesheets="@fileBox.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FileBox">
+   <children>
+      <ImageView fx:id="icon_view" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="file_name" alignment="CENTER" prefHeight="60.0" prefWidth="200.0" text="fileName_with.extension" wrapText="true">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label id="size_label" fx:id="file_size" alignment="CENTER" layoutX="70.0" layoutY="10.0" prefHeight="60.0" prefWidth="140.0" text="size" wrapText="true">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="14.0" />
+         </font>
+      </Label>
+      <AnchorPane fx:id="progress_background" prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <Rectangle id="progressbar_background" arcHeight="20.0" arcWidth="20.0" fill="DODGERBLUE" height="11.0" layoutX="24.0" layoutY="25.0" stroke="#112118" strokeType="OUTSIDE" width="150.0" />
+            <Rectangle id="progressBar" fx:id="progress" arcHeight="20.0" arcWidth="20.0" fill="DODGERBLUE" height="13.0" layoutX="23.0" layoutY="24.0" stroke="#112118" strokeType="OUTSIDE" width="94.0" />
+         </children>
+      </AnchorPane>
+   </children>
+</HBox>

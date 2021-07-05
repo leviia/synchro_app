@@ -6,12 +6,18 @@
 
 #bg_image{
     -fx-background-color: #00BC73;
+    -fx-background-radius: 20px 0px 0px 20px;
+    -fx-border-radius: 20px 0px 0px 20px;
+    -fx-pref-width: 350;
+    -fx-pref-height: 600;
 }
 
 #root{
     -fx-background-color: white;
     -fx-background-radius: 20;
     -fx-border-radius: 20;
+    -fx-pref-width: 1000;
+    -fx-pref-height: 600;
 }
 
 #username_field{
@@ -75,7 +81,22 @@
     -fx-background-color: rgba(0, 188, 115, .4);
     -fx-background-radius: 20;
     -fx-border-radius: 20;
-    -fx-pref-width: 300;
-    -fx-pref-height: 40;
+    -fx-pref-width: 400;
+    -fx-pref-height: 50;
     -fx-text-color: rgb(68, 68, 68);
+}
+
+#minimize_btn{
+    -fx-background-color: transparent;
+}
+#minimize_btn:hover{
+    -fx-background-color: transparent;
+    -fx-text-fill: red;
+}
+#close_btn{
+    -fx-background-color: transparent;
+}
+#close_btn:hover{
+    -fx-background-color: transparent;
+    -fx-text-fill: red;
 }

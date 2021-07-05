@@ -28,27 +28,24 @@ import javafx.scene.control.TextField;
 
 public class Synchro {
 
-	private Sardine sardine;
 	private ArrayList<Cacheobj> remote_cache = new ArrayList<Cacheobj>();
 	private ArrayList<Cacheobj> local_cache = new ArrayList<Cacheobj>();
 	private ArrayList<Cacheobj> list_diff = new ArrayList<Cacheobj>();
 
-	private String username = "";
-	private String password = "";
-	private String domain = "cloud.leviia.com";
-
 	private String remote_folder = "/test";
-	private String remote_path = "/remote.php/dav/files/"+username+remote_folder;
+	private String remote_path;
 
 	private String local_folder = "";
 	private String local_path = "/home/arnaud/Documents/project";
+	
+	public static User user;
 
 
 
-	public Synchro(String un, String up, String hostname) {
-		// TODO Auto-generated constructor stub
-
+	public Synchro(String username, String password, String hostname) {
 		
+		user = new User(username, password, hostname);
+		remote_path = "/remote.php/dav/files/"+user.username+remote_folder;
 	}
 
 	private void load_remote_cache() {
@@ -79,10 +76,10 @@ public class Synchro {
 			try {
 				if (co.isdir) {
 
-					sardine.createDirectory("https://" + domain + remote_path + co.path);
+					user.sardine.createDirectory("https://" + user.domain + remote_path + co.path);
 				} else {
 					InputStream fis = new FileInputStream(new File("/home/arnaud/Documents/project" + co.path));
-					sardine.put("https://" + domain + remote_path + co.path.replaceAll(" ", "%20"), fis);
+					user.sardine.put("https://" + user.domain + remote_path + co.path.replaceAll(" ", "%20"), fis);
 				}
 				remote_cache.add(co);
 				save_remote_cache();
@@ -157,7 +154,7 @@ public class Synchro {
 
 		List<DavResource> files = null;
 		try {
-			files = sardine.list("https://" + domain + remote_path, -1);
+			files = user.sardine.list("https://" + user.domain + remote_path, -1);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -191,16 +188,10 @@ public class Synchro {
 		}
 
 	}
-
-	private void setup_webdav() {
-		System.out.println("setup webdav");
-		sardine = SardineFactory.begin(username, password);
-		sardine.enablePreemptiveAuthentication(domain);
-	}
 	
 	public void run(String[] args) {
 
-		setup_webdav();
+		//setup_webdav();
 		if (!new File("/tmp/test.txt").isFile()) {
 			create_remote_cache();
 		}
@@ -213,16 +204,10 @@ public class Synchro {
 		}
 	}
 
-	public boolean test_sync(String username, String pass, String hostname) {
-		
-		this.username = username;
-		this.password = pass;
-		this.domain = hostname;
-		
-		setup_webdav();
-		System.out.println("https://" + domain + remote_path);
+	public boolean test_sync() {
+	
 		try {
-			if(sardine.list("https://" + domain + remote_path, 0) != null) {
+			if(user.sardine.list("https://" + user.domain + remote_path, 0) != null) {
 			return true;
 			}
 			
@@ -230,8 +215,6 @@ public class Synchro {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
 		return false;
 	}
 

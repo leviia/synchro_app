@@ -30,6 +30,7 @@ import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Arc;
 import javafx.scene.shape.Circle;
+import synchro.Synchro;
 
 public class Synchronize {
 
@@ -89,29 +90,16 @@ public class Synchronize {
 
     @FXML
     void initialize(){
-        update_StorageIndicator(65);
+    	Synchro.user.retreive_info();
+        update_StorageIndicator(synchro.Synchro.user.quota_relative);
         update_Avatar();
+        
+        
     }
 
     private void update_Avatar() {
-
-    	BufferedImage image = null;
-		try {
-			URL url = new URL("https://cloud.leviia.com/avatar/leviia/32?v=0");
-			InputStream in = new BufferedInputStream(url.openStream());
-	    	image = ImageIO.read(in);
-	    	profile_picture.setFill(new ImagePattern(SwingFXUtils.toFXImage(image, null)));
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
+    	
+    	profile_picture.setFill(new ImagePattern(SwingFXUtils.toFXImage(Synchro.user.avatar, null)));
 	}
 
 	/**
@@ -119,7 +107,10 @@ public class Synchronize {
      * by changing the length of Arc you can see the effect of progress Indicator.
      * @param percentageValue
      */
-    void update_StorageIndicator(int percentageValue){
+    void update_StorageIndicator(float percentageValue){
+    	storage_value.setText(String.valueOf(Synchro.user.quota_free/1000000000));
+    	used_storage.setText(String.valueOf(Synchro.user.quota_used/1000000000));
+    	free_storage.setText(String.valueOf(Synchro.user.quota_total/1000000000));
         storage_percentage.setText(percentageValue+"%");
         double value = (double)(percentageValue * 360) / 100;
         storage_ProgressIndicator.setLength(-value);

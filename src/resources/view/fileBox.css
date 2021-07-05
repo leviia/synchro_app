@@ -1,0 +1,36 @@
+
+#even{
+    -fx-background-color: white;
+}
+
+#old{
+    -fx-background-color: #f8f8f8;
+}
+
+#size_label{
+    -fx-text-fill: #8a8888;
+}
+
+#progressBar{
+    -fx-fill: #00BC73;
+    -fx-stroke: #00BC73;
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+    -fx-arc-width: 10;
+    -fx-arc-height: 10;
+}
+#progressbar_background{
+    -fx-fill: #d6d6d6;
+    -fx-stroke: #d6d6d6;
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+    -fx-arc-width: 10;
+    -fx-arc-height: 10;
+}
+
+#status{
+    -fx-pref-width: 200;
+    -fx-text-alignment: center;
+    -fx-text-fill: #00BC73;
+}
+

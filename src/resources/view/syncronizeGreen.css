@@ -17,6 +17,13 @@
 #leftSide_container{
     -fx-border-color: #cfcfcf;
     -fx-background-color: white;
+    -fx-background-radius: 0px 0px 0px 20px;
+    -fx-border-radius: 0px 0px 0px 20px;
+}
+
+#rightSide_container{
+    -fx-background-color: #f7f7f7;
+    -fx-background-radius: 0px 0px 20px 0px;
 }
 
 #button{
@@ -53,7 +60,6 @@
     -fx-text-fill: white;
     -fx-background-radius: 15;
     -fx-border-radius: 15;
-    -fx-pref-width: 220;
     -fx-pref-height: 35;
 }
 
@@ -71,13 +77,6 @@
 #table_heading{
     -fx-background-color: #f0eded;
 
-}
-
-#tableview{
-    -fx-background-color: white;
-    -fx-background-radius: 20;
-    -fx-border-color: #f0eded;
-    -fx-border-radius: 20;
 }
 
 #download_lineChart{
@@ -118,4 +117,12 @@
 .default-color0.chart-series-line { -fx-stroke: #00BC73; }
 
 .default-color0.chart-line-symbol{-fx-background-color: #00BC73, #ffffff;
+}
+
+#files_tableView{
+    -fx-background-color: white;
+    -fx-background-radius: 20;
+    -fx-border-color: #f0eded;
+    -fx-border-radius: 20;
+    -fx-pref-width: 590;
 }
