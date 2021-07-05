@@ -43,10 +43,6 @@ public class Main extends Application {
 	        
 	        primaryStage.initStyle(StageStyle.TRANSPARENT);
 	        primaryStage.show();
-//			Parent root = FXMLLoader.load(getClass().getResource("/resources/view/login_page.fxml"));
-//	        primaryStage.setTitle("Hello World");
-//	        primaryStage.setScene(new Scene(root, 300, 275));
-//	        primaryStage.show();
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

@@ -21,6 +21,9 @@ import com.github.sardine.DavResource;
 import com.github.sardine.Sardine;
 import com.github.sardine.SardineFactory;
 
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+
 public class Synchro {
 
 	private Sardine sardine;
@@ -33,7 +36,7 @@ public class Synchro {
 	private String domain = "cloud.leviia.com";
 
 	private String remote_folder = "/test";
-	private String remote_path = "/remote.php/dav/files/"+"username"+remote_folder;
+	private String remote_path = "/remote.php/dav/files/"+username+remote_folder;
 
 	private String local_folder = "";
 	private String local_path = "/home/arnaud/Documents/project";
@@ -204,6 +207,28 @@ public class Synchro {
 			upload();
 			wait(1000);
 		}
+	}
+
+	public boolean test_sync(String username, String pass, String hostname) {
+		
+		this.username = username;
+		this.password = pass;
+		this.domain = hostname;
+		
+		setup_webdav();
+		System.out.println("https://" + domain + remote_path);
+		try {
+			if(sardine.list("https://" + domain + remote_path, 0) != null) {
+			return true;
+			}
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return false;
 	}
 
 }

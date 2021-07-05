@@ -145,7 +145,7 @@
                         <Font name="Arial Rounded MT Bold" size="14.0" />
                      </font>
                   </TextField>
-                  <Button id="connect_btn" mnemonicParsing="false" onAction="#connect" prefHeight="25.0" prefWidth="380.0" text="Test Connection">
+                  <Button id="connect_btn" fx:id="connect_btn" mnemonicParsing="false" onAction="#connect" prefHeight="25.0" prefWidth="380.0" text="Test Connection">
                      <font>
                         <Font name="Arial Narrow" size="14.0" />
                      </font>

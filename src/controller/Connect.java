@@ -2,10 +2,16 @@ package controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.paint.Color;
 import synchro.Synchro;
 import java.awt.Desktop;
 import java.io.IOException;
@@ -25,6 +31,9 @@ public class Connect {
 
     @FXML
     private TextField hostName_input; // host name input
+    
+    @FXML
+    private Button connect_btn; // host name input
 
     @FXML
     private Label msg_label; // msg label
@@ -41,7 +50,16 @@ public class Connect {
     	
     	Synchro sync = new synchro.Synchro(username_input.getText(),pass_input.getText(),hostName_input.getText());
     	
-    	System.out.println(pass_input.getText());
+    	if (sync.test_sync(username_input.getText(), pass_input.getText(), hostName_input.getText())) {
+    	connect_btn.setText("continue");
+    	msg_label.setText("Success");
+    	msg_label.setVisible(true);
+    	}
+//    	else {
+//    		msg_label.setText("Error");
+//    		msg_label.setBackground(new Background(new BackgroundFill(Color.RED, null, null)));
+//        	msg_label.setVisible(true);
+//    	}
     }
 
     @FXML
