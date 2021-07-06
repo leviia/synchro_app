@@ -85,9 +85,6 @@
     -fx-border-color: #f0eded;
     -fx-border-radius: 20;
     -fx-text-fill: #00BC73;
-    -fx-horizontal-grid-lines-visible: false;
-    -fx-alternative-column-fill-visible: false;
-    -fx-alternative-row-fill-visible: false;
     -fx-pref-width: 425;
     -fx-pref-height: 225;
 }
@@ -112,11 +109,6 @@
     -fx-background-radius: 20;
     -fx-pref-width: 425;
     -fx-pref-height: 225;
-}
-
-.default-color0.chart-series-line { -fx-stroke: #00BC73; }
-
-.default-color0.chart-line-symbol{-fx-background-color: #00BC73, #ffffff;
 }
 
 #files_tableView{

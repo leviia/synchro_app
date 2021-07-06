@@ -5,14 +5,19 @@ import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.chart.LineChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Arc;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 import synchro.Synchro;
+
+import java.util.Random;
 
 public class Synchronize {
 
@@ -47,10 +52,10 @@ public class Synchronize {
     private TableColumn<?, ?> status_column;
 
     @FXML
-    private LineChart<?, ?> upload_chart;
+    private LineChart<String, Number> upload_chart;
 
     @FXML
-    private LineChart<?, ?> download_chart;
+    private LineChart<String, Number> download_chart;
 
     @FXML
     private Arc storage_ProgressIndicator;
@@ -72,6 +77,7 @@ public class Synchronize {
 
     @FXML
     void initialize(){
+        initLineCarts();
         try {
             Synchro.user.retreive_info();
             update_StorageIndicator(synchro.Synchro.user.quota_relative);
@@ -80,6 +86,32 @@ public class Synchronize {
             e.printStackTrace();
         }
 
+    }
+
+    void initLineCarts(){ // this is for chart testing purpose.
+
+        download_chart.lookup(".chart-plot-background").setStyle("-fx-background-color: transparent;");
+        upload_chart.lookup(".chart-plot-background").setStyle("-fx-background-color: transparent;");
+
+        setData(download_chart,"-fx-stroke: #f2cb0a");
+        setData(upload_chart, "-fx-stroke: #00BC73");
+    }
+
+    private void setData(LineChart<String, Number> lineChart, String lineColor) {
+        XYChart.Series<String, Number> series = new XYChart.Series<>();
+
+
+        for(int i = 0; i< 10; i++){
+            XYChart.Data<String, Number> data = new XYChart.Data<>();
+            Rectangle rect = new Rectangle();
+            rect.setVisible(false);
+            data.setNode(rect);
+            data.setXValue(""+i);
+            data.setYValue(new Random().nextInt(100));
+            series.getData().add(data);
+        }
+        lineChart.getData().add(series);
+        series.getNode().setStyle(lineColor);
     }
 
     private void update_Avatar() {
