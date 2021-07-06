@@ -1,23 +1,5 @@
 package controller;
 
-import java.awt.image.BufferedImage;
-import java.io.BufferedInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.MalformedURLException;
-import java.net.URI;
-import java.net.URL;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import java.net.http.HttpResponse.BodyHandler;
-import java.nio.channels.Channels;
-import java.nio.channels.ReadableByteChannel;
-
-import javax.imageio.ImageIO;
-
 import application.Main;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
@@ -27,7 +9,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Arc;
 import javafx.scene.shape.Circle;
@@ -91,11 +72,14 @@ public class Synchronize {
 
     @FXML
     void initialize(){
-    	Synchro.user.retreive_info();
-        update_StorageIndicator(synchro.Synchro.user.quota_relative);
-        update_Avatar();
-        
-        
+        try {
+            Synchro.user.retreive_info();
+            update_StorageIndicator(synchro.Synchro.user.quota_relative);
+            update_Avatar();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     private void update_Avatar() {
