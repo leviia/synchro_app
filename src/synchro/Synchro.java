@@ -37,13 +37,13 @@ public class Synchro {
 
 	private String local_folder = "";
 	private String local_path = "/home/arnaud/Documents/project";
-	
+
 	public static User user;
 
 
 
 	public Synchro(String username, String password, String hostname) {
-		
+
 		user = new User(username, password, hostname);
 		remote_path = "/remote.php/dav/files/"+user.username+remote_folder;
 	}
@@ -188,7 +188,7 @@ public class Synchro {
 		}
 
 	}
-	
+
 	public void run(String[] args) {
 
 		//setup_webdav();
@@ -205,13 +205,13 @@ public class Synchro {
 	}
 
 	public boolean test_sync() {
-	
+
 		try {
 			System.out.println("https://" + user.domain + remote_path);
 			if(user.sardine.list("https://" + user.domain + remote_path, 0) != null) {
-			return true;
+				return true;
 			}
-			
+
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

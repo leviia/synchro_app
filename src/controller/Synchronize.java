@@ -15,14 +15,19 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Arc;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.DirectoryChooser;
 import synchro.Synchro;
 
+import java.io.File;
 import java.util.Random;
 
 public class Synchronize {
 
     @FXML
     private Circle profile_picture;
+
+    @FXML
+    private Button btn_local_directory;
 
     @FXML
     private Button synchronization;
@@ -145,7 +150,12 @@ public class Synchronize {
 
     @FXML
     void select_local_directory(ActionEvent event) {
-
+        DirectoryChooser chooser = new DirectoryChooser();
+        chooser.setTitle("Select Local Directory");
+        File defaultDirectory = new File("/home/arnaud/");
+        chooser.setInitialDirectory(defaultDirectory);
+        File selectedDirectory = chooser.showDialog(Main.getInstance().stage);
+        btn_local_directory.setText(selectedDirectory.getPath());
     }
 
     @FXML
