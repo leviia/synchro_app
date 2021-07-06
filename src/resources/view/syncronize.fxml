@@ -202,7 +202,7 @@
    <right>
       <VBox id="rightSide_container" alignment="CENTER" prefHeight="720.0" prefWidth="462.0" spacing="20.0" BorderPane.alignment="CENTER">
          <children>
-            <LineChart id="upload_lineChart" fx:id="upload_chart" horizontalGridLinesVisible="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="309.0" prefWidth="444.0">
+            <LineChart id="upload_lineChart" fx:id="upload_chart" horizontalGridLinesVisible="false" horizontalZeroLineVisible="false" legendVisible="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="309.0" prefWidth="444.0" verticalGridLinesVisible="false" verticalZeroLineVisible="false">
               <xAxis>
                 <CategoryAxis id="upload_lineColor" gapStartAndEnd="false" side="RIGHT" tickLabelsVisible="false" tickMarkVisible="false" />
               </xAxis>
@@ -210,7 +210,7 @@
                 <NumberAxis id="upload_lineColor" autoRanging="false" forceZeroInRange="false" minorTickVisible="false" side="TOP" tickLabelsVisible="false" tickMarkVisible="false" />
               </yAxis>
             </LineChart>
-            <LineChart id="download_lineChart" fx:id="download_chart" horizontalGridLinesVisible="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="309.0" prefWidth="444.0">
+            <LineChart id="download_lineChart" fx:id="download_chart" horizontalGridLinesVisible="false" horizontalZeroLineVisible="false" legendVisible="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="309.0" prefWidth="444.0" verticalGridLinesVisible="false" verticalZeroLineVisible="false">
                <xAxis>
                   <CategoryAxis gapStartAndEnd="false" side="RIGHT" tickLabelsVisible="false" tickMarkVisible="false" />
                </xAxis>
