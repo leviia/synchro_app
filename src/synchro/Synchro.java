@@ -32,7 +32,7 @@ public class Synchro {
 	private ArrayList<Cacheobj> local_cache = new ArrayList<Cacheobj>();
 	private ArrayList<Cacheobj> list_diff = new ArrayList<Cacheobj>();
 
-	private String remote_folder = "/test";
+	private String remote_folder = "";
 	private String remote_path;
 
 	private String local_folder = "";
@@ -207,6 +207,7 @@ public class Synchro {
 	public boolean test_sync() {
 	
 		try {
+			System.out.println("https://" + user.domain + remote_path);
 			if(user.sardine.list("https://" + user.domain + remote_path, 0) != null) {
 			return true;
 			}

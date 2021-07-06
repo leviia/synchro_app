@@ -33,6 +33,7 @@ public class Main extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		
 		stage = primaryStage;
+		
 		replaceSceneContent("/resources/view/login_page.fxml");
         stage.initStyle(StageStyle.TRANSPARENT);
         stage.show();

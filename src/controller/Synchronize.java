@@ -2,6 +2,7 @@ package controller;
 
 import java.awt.image.BufferedImage;
 import java.io.BufferedInputStream;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -17,6 +18,7 @@ import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
 
 import javax.imageio.ImageIO;
+import javax.swing.JFileChooser;
 
 import application.Main;
 import javafx.embed.swing.SwingFXUtils;
@@ -31,6 +33,7 @@ import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Arc;
 import javafx.scene.shape.Circle;
+import javafx.stage.DirectoryChooser;
 import synchro.Synchro;
 
 public class Synchronize {
@@ -40,6 +43,9 @@ public class Synchronize {
 
     @FXML
     private Button synchronization;
+    
+    @FXML
+    private Button btn_local_directory;
 
     @FXML
     private Button upload;
@@ -129,6 +135,13 @@ public class Synchronize {
 
     @FXML
     void select_local_directory(ActionEvent event) {
+    	
+    	DirectoryChooser chooser = new DirectoryChooser();
+    	chooser.setTitle("Select Local Directory");
+    	File defaultDirectory = new File("/home/arnaud/");
+    	chooser.setInitialDirectory(defaultDirectory);
+    	File selectedDirectory = chooser.showDialog(Main.getInstance().stage);
+    	btn_local_directory.setText(selectedDirectory.getPath());
 
     }
 

@@ -133,7 +133,7 @@
                      </font>
                   </Label>
                   <Button id="button_inside" layoutX="51.0" layoutY="85.0" mnemonicParsing="false" onAction="#select_remote_directory" prefHeight="25.0" prefWidth="237.0" text="Select Remote Directory" />
-                  <Button id="button_inside" layoutX="302.0" layoutY="85.0" mnemonicParsing="false" onAction="#select_local_directory" prefHeight="25.0" prefWidth="233.0" text="Select Local Directory" />
+                  <Button id="button_inside" fx:id="btn_local_directory" layoutX="302.0" layoutY="85.0" mnemonicParsing="false" onAction="#select_local_directory" prefHeight="25.0" prefWidth="233.0" text="Select Local Directory" />
                   <Label id="msg_label" fx:id="folderSelection_msgLabel" alignment="CENTER" layoutX="41.0" layoutY="180.0" prefHeight="69.0" prefWidth="503.0" text="msg here" textFill="#6f6f6f" wrapText="true" />
                   <Button id="button_inside" layoutX="36.0" layoutY="268.0" mnemonicParsing="false" onAction="#start_synchronization" prefHeight="25.0" prefWidth="513.0" text="Start Synchronization" textFill="#f8f8f8" />
                   <ImageView fitHeight="50.0" fitWidth="25.0" layoutX="69.0" layoutY="127.0" pickOnBounds="true" preserveRatio="true">
