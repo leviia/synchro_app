@@ -220,7 +220,7 @@
             </LineChart>
             <AnchorPane id="storage_container" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="175.0" prefWidth="425.0">
                <children>
-                  <Arc fx:id="storage_ProgressIndicator" fill="#1f93ff00" layoutX="313.0" layoutY="113.0" length="234.0" radiusX="90.0" radiusY="90.0" startAngle="90.0" strokeLineCap="BUTT" strokeLineJoin="ROUND" strokeType="INSIDE" strokeWidth="30.0">
+                  <Arc fx:id="storage_ProgressIndicator" fill="#1f93ff00" layoutX="313.0" layoutY="113.0" length="360.0" radiusX="90.0" radiusY="90.0" startAngle="90.0" strokeLineCap="BUTT" strokeLineJoin="ROUND" strokeWidth="30.0">
                      <stroke>
                         <LinearGradient endX="0.5238095238095238" endY="1.0" startX="1.0">
                            <stops>
