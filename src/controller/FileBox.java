@@ -16,7 +16,7 @@ public class FileBox {
     private ImageView icon_view;
 
     @FXML
-    private Label file_name;
+    public Label file_name;
 
     @FXML
     private Label file_size;
@@ -37,6 +37,10 @@ public class FileBox {
         progress.setWidth((percentageValue*max_size)/100);
         if(percentageValue == 100)
             onFinishedProgress();
+    }
+    
+    public void setFileName(String name) {
+    	file_name.setText(name);
     }
 
     void onFinishedProgress(){

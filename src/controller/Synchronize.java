@@ -4,12 +4,17 @@ import application.Main;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Arc;
 import javafx.scene.shape.Circle;
@@ -18,6 +23,7 @@ import javafx.stage.DirectoryChooser;
 import synchro.Synchro;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Random;
 
 public class Synchronize {
@@ -78,10 +84,41 @@ public class Synchronize {
 
     @FXML
     private Label storage_percentage;
+    
+    @FXML
+    private VBox file_scroll;
 
     @FXML
     void initialize(){
+ 
+    	for(int i=0; i< 4; i++) {
+    		Node node = null;
+			try {
+				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/resources/view/fileBox.fxml"));
+    			node = fxmlLoader.load();
+    			((FileBox) fxmlLoader.getController()).file_name.setText("test.txt");
+    		} catch (IOException e1) {
+    			// TODO Auto-generated catch block
+    			e1.printStackTrace();
+    		}
+        	
+			file_scroll.getChildren().add(node);
+    		
+    	}
+
+    	
+//    	Node node2 = null;
+//		try {
+//			node2 = (Node)FXMLLoader.load(getClass().getResource("/resources/view/fileBox.fxml"));
+//		} catch (IOException e1) {
+//			// TODO Auto-generated catch block
+//			e1.printStackTrace();
+//		}
+//    	file_scroll.getChildren().add(node2);
+    	
+    	
         initLineCarts();
+        
         try {
             Synchro.user.retreive_info();
             update_StorageIndicator(synchro.Synchro.user.quota_relative);
