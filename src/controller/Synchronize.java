@@ -20,6 +20,8 @@ import javafx.scene.shape.Arc;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.DirectoryChooser;
+import synchro.FileLoadBar;
+import synchro.Job;
 import synchro.Synchro;
 
 import java.io.File;
@@ -90,33 +92,17 @@ public class Synchronize {
 
     @FXML
     void initialize(){
+    	
+    	
  
-    	for(int i=0; i< 4; i++) {
-    		Node node = null;
-			try {
-				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/resources/view/fileBox.fxml"));
-    			node = fxmlLoader.load();
-    			((FileBox) fxmlLoader.getController()).file_name.setText("test.txt");
-    		} catch (IOException e1) {
-    			// TODO Auto-generated catch block
-    			e1.printStackTrace();
-    		}
+    	    FileLoadBar flb1 = new FileLoadBar();
+    	    flb1.controller.file_name.setText("test.txt");
+    	    file_scroll.getChildren().add(flb1.node);
+    	    
+    	    FileLoadBar flb2 = new FileLoadBar();
+    	    flb2.controller.file_name.setText("test.txt");
+    	    file_scroll.getChildren().add(flb2.node);
         	
-			file_scroll.getChildren().add(node);
-    		
-    	}
-
-    	
-//    	Node node2 = null;
-//		try {
-//			node2 = (Node)FXMLLoader.load(getClass().getResource("/resources/view/fileBox.fxml"));
-//		} catch (IOException e1) {
-//			// TODO Auto-generated catch block
-//			e1.printStackTrace();
-//		}
-//    	file_scroll.getChildren().add(node2);
-    	
-    	
         initLineCarts();
         
         try {
@@ -201,6 +187,8 @@ public class Synchronize {
 
     @FXML
     void start_synchronization(ActionEvent event) {
+    	
+    	Job job1 = new Job();
 
     }
     
