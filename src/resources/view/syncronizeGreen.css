@@ -40,6 +40,19 @@
     -fx-background-color: #f0eded;
 }
 
+.jfx-combo-box{
+    -fx-background-color: #00BC73;
+    -fx-background-radius: 15;
+    -fx-border-radius: 15;
+    -fx-pref-height: 35;
+}
+.jfx-combo-box .label {
+    -fx-background-color: #00BC73;
+    -fx-text-fill: white;
+}
+.jfx-combo-box:hover{
+    -fx-background-color: rgba(0, 188, 115, .4);
+}
 #icon{
     -fx-fill: black;
 }
@@ -67,6 +80,8 @@
     -fx-background-color: rgba(0, 188, 115, .4);
 }
 
+
+
 #msg_label{
     -fx-background-color: white;
     -fx-background-radius: 20;
@@ -78,28 +93,13 @@
     -fx-background-color: #f0eded;
 
 }
-
-#download_lineChart{
-    -fx-background-color: white;
-    -fx-background-radius: 20;
-    -fx-border-color: #f0eded;
-    -fx-border-radius: 20;
-    -fx-text-fill: #00BC73;
-    -fx-pref-width: 425;
-    -fx-pref-height: 225;
-}
-#upload_lineChart{
+#chart_container{
     -fx-background-color: white;
     -fx-background-radius: 20;
     -fx-border-color: #f0eded;
     -fx-border-radius: 20;
     -fx-pref-width: 425;
     -fx-pref-height: 225;
-    -fx-stroke-width: 2px;
-}
-
-#upload_lineColor{
-    -fx-stroke: #00BC73;
 }
 
 #storage_container{
