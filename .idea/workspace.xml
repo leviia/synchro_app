@@ -5,7 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="390d0b6f-edbf-4bcb-aeac-a52ca57b96c7" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/resources/view/svg/cloud.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/Synchronize.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/Synchronize.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/view/syncronize.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/view/syncronize.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/view/syncronizeGreen.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/view/syncronizeGreen.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,22 +37,27 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="Downloaded.Files.Path.Enabled" value="true" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="dart.analysis.tool.window.visible" value="false" />
-    <property name="last_opened_file_path" value="C:/Program Files/Java/javafx-sdk-16/lib" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../Coding Partition/JavaFX Libraries/JFoenix/jfoenix-9.0.10.jar" />
     <property name="project.structure.last.edited" value="Libraries" />
-    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.54772395" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\JavaFX\JavaFX_FreelancerTasks\arnaudlevlla\synchro_app\src\resources\view\svg" />
       <recent name="F:\JavaFX\JavaFX_FreelancerTasks\arnaudlevlla\synchro_app\resources\view\svg" />
       <recent name="F:\JavaFX\JavaFX_FreelancerTasks\arnaudlevlla\synchro_app\resources\view\img" />
       <recent name="F:\JavaFX\JavaFX_FreelancerTasks\arnaudlevlla\synchro_app\resources\view" />
       <recent name="F:\JavaFX\JavaFX_FreelancerTasks\arnaudlevlla\synchro_app\resources" />
-      <recent name="F:\JavaFX\JavaFX_FreelancerTasks\arnaudlevlla\synchro_app\src\controller" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="F:\JavaFX\JavaFX_FreelancerTasks\arnaudlevlla\synchro_app" />

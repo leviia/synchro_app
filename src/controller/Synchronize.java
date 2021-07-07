@@ -8,12 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
+import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Arc;
@@ -35,6 +30,9 @@ public class Synchronize {
 
     @FXML
     private Button btn_local_directory;
+
+    @FXML
+    private ComboBox<String> remoteDirectory;
 
     @FXML
     private Button synchronization;
@@ -86,25 +84,54 @@ public class Synchronize {
 
     @FXML
     private Label storage_percentage;
-    
+
     @FXML
     private VBox file_scroll;
 
     @FXML
     void initialize(){
-    	
-    	
- 
+
+        remoteDirectory.getItems().add("Test 1");
+        remoteDirectory.getItems().add("Test 2");
+
+    	for(int i=0; i< 4; i++) {
+    		Node node = null;
+			try {
+				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/resources/view/fileBox.fxml"));
+    			node = fxmlLoader.load();
+    			((FileBox) fxmlLoader.getController()).file_name.setText("test.txt");
+    		} catch (IOException e1) {
+    			// TODO Auto-generated catch block
+    			e1.printStackTrace();
+    		}
+
+			file_scroll.getChildren().add(node);
+
+    	}
+
+
+
+//    	Node node2 = null;
+//		try {
+//			node2 = (Node)FXMLLoader.load(getClass().getResource("/resources/view/fileBox.fxml"));
+//		} catch (IOException e1) {
+//			// TODO Auto-generated catch block
+//			e1.printStackTrace();
+//		}
+//    	file_scroll.getChildren().add(node2);
+
+
+
     	    FileLoadBar flb1 = new FileLoadBar();
     	    flb1.controller.file_name.setText("test.txt");
     	    file_scroll.getChildren().add(flb1.node);
-    	    
+
     	    FileLoadBar flb2 = new FileLoadBar();
     	    flb2.controller.file_name.setText("test.txt");
     	    file_scroll.getChildren().add(flb2.node);
-        	
+
         initLineCarts();
-        
+
         try {
             Synchro.user.retreive_info();
             update_StorageIndicator(synchro.Synchro.user.quota_relative);
@@ -122,6 +149,10 @@ public class Synchronize {
 
         setData(download_chart,"-fx-stroke: #f2cb0a");
         setData(upload_chart, "-fx-stroke: #00BC73");
+    }
+
+    void setup_uploadChart(){
+
     }
 
     private void setData(LineChart<String, Number> lineChart, String lineColor) {
@@ -142,7 +173,7 @@ public class Synchronize {
     }
 
     private void update_Avatar() {
-    	
+
     	profile_picture.setFill(new ImagePattern(SwingFXUtils.toFXImage(Synchro.user.avatar, null)));
 	}
 
@@ -187,11 +218,11 @@ public class Synchronize {
 
     @FXML
     void start_synchronization(ActionEvent event) {
-    	
+
     	Job job1 = new Job();
 
     }
-    
+
     @FXML
     void minimize_app(ActionEvent event) {
         //Stage stage = (Stage) msg_label.getScene().getWindow();
