@@ -134,7 +134,28 @@
                         <Font name="Arial Rounded MT Bold" size="14.0" />
                      </font>
                   </Label>
-                  <Button id="button_inside" fx:id="btn_local_directory" layoutX="302.0" layoutY="85.0" mnemonicParsing="false" onAction="#select_local_directory" prefHeight="25.0" prefWidth="233.0" text="Select Local Directory" />
+                  <Button id="button_inside" fx:id="btn_local_directory" layoutX="302.0" layoutY="85.0" mnemonicParsing="false" onAction="#select_local_directory" prefHeight="25.0" prefWidth="233.0" text="Select Local Directory">
+                     <textFill>
+                        <LinearGradient endY="1.0">
+                           <stops>
+                              <Stop>
+                                 <color>
+                                    <Color green="0.7372549176216125" blue="0.45098039507865906" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="0.4991507682584825">
+                                 <color>
+                                    <Color red="0.5555555820465088" green="1.0" blue="0.8148148059844971" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="1.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </Stop>
+                           </stops>
+                        </LinearGradient>
+                     </textFill></Button>
                   <Label id="msg_label" fx:id="folderSelection_msgLabel" alignment="CENTER" layoutX="41.0" layoutY="180.0" prefHeight="69.0" prefWidth="503.0" text="msg here" textFill="#6f6f6f" wrapText="true" />
                   <Button id="button_inside" layoutX="36.0" layoutY="268.0" mnemonicParsing="false" onAction="#start_synchronization" prefHeight="25.0" prefWidth="513.0" text="Start Synchronization" textFill="#f8f8f8" />
                   <ImageView fitHeight="50.0" fitWidth="25.0" layoutX="69.0" layoutY="127.0" pickOnBounds="true" preserveRatio="true">
@@ -206,9 +227,9 @@
    <right>
       <VBox id="rightSide_container" alignment="CENTER" prefHeight="720.0" prefWidth="462.0" spacing="20.0" BorderPane.alignment="CENTER">
          <children>
-            <Pane id="chart_container" prefHeight="258.0" prefWidth="462.0">
+            <Pane id="chart_container" fx:id="uploadChart_Container" prefHeight="258.0" prefWidth="462.0">
                <children>
-                  <LineChart fx:id="upload_chart" horizontalGridLinesVisible="false" horizontalZeroLineVisible="false" layoutX="19.0" layoutY="69.0" legendVisible="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="155.0" prefWidth="425.0" verticalGridLinesVisible="false" verticalZeroLineVisible="false">
+                  <LineChart fx:id="upload_chart" horizontalGridLinesVisible="false" horizontalZeroLineVisible="false" layoutX="-17.0" layoutY="69.0" legendVisible="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="173.0" prefWidth="493.0" verticalGridLinesVisible="false" verticalZeroLineVisible="false">
                     <xAxis>
                       <CategoryAxis id="upload_lineColor" gapStartAndEnd="false" side="RIGHT" tickLabelsVisible="false" tickMarkVisible="false" />
                     </xAxis>
@@ -221,7 +242,7 @@
                         <Font name="Arial Rounded MT Bold" size="14.0" />
                      </font>
                   </Label>
-                  <Label layoutX="103.0" layoutY="41.0" text="5.2Mbps" textFill="#00bc73">
+                  <Label layoutX="103.0" layoutY="41.0" text="5.2Mbps" textFill="#00ba70">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="20.0" />
                      </font>
@@ -238,9 +259,9 @@
                   <Insets top="20.0" />
                </VBox.margin>
             </Pane>
-            <Pane id="chart_container" layoutX="10.0" layoutY="30.0" prefHeight="258.0" prefWidth="462.0">
+            <Pane id="chart_container" fx:id="downloadChart_container" layoutX="10.0" layoutY="30.0" prefHeight="258.0" prefWidth="462.0">
                <children>
-                  <LineChart fx:id="download_chart" horizontalGridLinesVisible="false" horizontalZeroLineVisible="false" layoutX="14.0" layoutY="74.0" legendVisible="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="155.0" prefWidth="425.0" verticalGridLinesVisible="false" verticalZeroLineVisible="false">
+                  <LineChart fx:id="download_chart" horizontalGridLinesVisible="false" horizontalZeroLineVisible="false" layoutX="-17.0" layoutY="69.0" legendVisible="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="174.0" prefWidth="493.0" verticalGridLinesVisible="false" verticalZeroLineVisible="false">
                      <xAxis>
                         <CategoryAxis gapStartAndEnd="false" side="RIGHT" tickLabelsVisible="false" tickMarkVisible="false" />
                      </xAxis>
