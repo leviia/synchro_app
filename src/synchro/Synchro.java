@@ -8,6 +8,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.net.URLEncoder;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -43,7 +47,7 @@ public class Synchro {
 	public Synchro(String username, String password, String hostname) {
 
 		user = new User(username, password, hostname);
-		remote_path = "/remote.php/dav/files/"+user.username+remote_folder;
+		remote_path = "/remote.php/dav/files/"+user.username;
 	}
 
 	private void load_remote_cache() {
@@ -173,8 +177,14 @@ public class Synchro {
 		List<DavResource> files = null;
 		List<DavResource> folders = new ArrayList<>();
 		try {
-			files = user.sardine.list("https://" + user.domain + remote_path, 1);
+			System.out.println("https://" + user.domain + remote_path+url);
+			URL url1= new URL("https://" + user.domain + remote_path+url);
+			URI uri = new URI(url1.getProtocol(), url1.getUserInfo(), url1.getHost(), url1.getPort(), url1.getPath(), url1.getQuery(), url1.getRef());
+			files = user.sardine.list(uri.toString(), 1);
 		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (URISyntaxException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

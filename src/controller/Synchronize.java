@@ -5,8 +5,6 @@ import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
@@ -21,7 +19,6 @@ import synchro.Job;
 import synchro.Synchro;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.List;
 import java.util.Random;
 
@@ -102,37 +99,6 @@ public class Synchronize {
 
     @FXML
     void initialize(){
-
-//        remoteDirectory.getItems().add("Test 1");
-//        remoteDirectory.getItems().add("Test 2");
-
-//    	for(int i=0; i< 4; i++) {
-//    		Node node = null;
-//			try {
-//				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/resources/view/fileBox.fxml"));
-//    			node = fxmlLoader.load();
-//    			((FileBox) fxmlLoader.getController()).file_name.setText("test.txt");
-//    		} catch (IOException e1) {
-//    			// TODO Auto-generated catch block
-//    			e1.printStackTrace();
-//    		}
-//
-//			file_scroll.getChildren().add(node);
-//
-//    	}
-
-
-
-//    	Node node2 = null;
-//		try {
-//			node2 = (Node)FXMLLoader.load(getClass().getResource("/resources/view/fileBox.fxml"));
-//		} catch (IOException e1) {
-//			// TODO Auto-generated catch block
-//			e1.printStackTrace();
-//		}
-//    	file_scroll.getChildren().add(node2);
-
-
 
     	    FileLoadBar flb1 = new FileLoadBar();
     	    flb1.controller.file_name.setText("test.txt");
@@ -283,11 +249,31 @@ public class Synchronize {
     @FXML
     void select_remote_directory() {
     	
-    	List<DavResource> folders = controller.Connect.sync.listFolders("/");
-    	for (DavResource folder : folders) {
-    		
-    		remoteDirectory.getItems().add(folder.getPath().replace(controller.Connect.sync.remote_path, ""));
+    	String url = "/";
+    	
+    	if (remoteDirectory.getSelectionModel().getSelectedItem() != null) {
+    		url = remoteDirectory.getSelectionModel().getSelectedItem();
     	}
+    	remoteDirectory.getItems().clear();
+    	// just here to make the dropdow good size 
+    	remoteDirectory.hide();
+    	remoteDirectory.setVisibleRowCount(1);
+    	remoteDirectory.show();
+    	remoteDirectory.hide();
+    	// really annoying !!
+    	remoteDirectory.getItems().add("/");
+    	
+    	List<DavResource> folders = controller.Connect.sync.listFolders(url);
+    	for (DavResource folder : folders) {
+    		if(folder.getPath().replace(controller.Connect.sync.remote_path, "").equals("/")) {
+    			continue;
+    		}
+    		
+    		remoteDirectory.getItems().add(folder.toString().replace(controller.Connect.sync.remote_path, "").replaceAll("/$", ""));
+    		remoteDirectory.setVisibleRowCount(remoteDirectory.getVisibleRowCount()+1);
+    	}   	
+    	
+    	remoteDirectory.show();
     	
 
     }
