@@ -159,7 +159,7 @@
                   </Label>
                   <Hyperlink layoutX="222.0" layoutY="126.0" onAction="#copy_officeWork_path" text="Copy Path" />
                   <Hyperlink layoutX="451.0" layoutY="126.0" onAction="#copy_archive_path" text="Copy Path" />
-                  <ComboBox id="button_inside" fx:id="remoteDirectory" layoutX="64.0" layoutY="85.0" onAction="#select_remote_directory" prefWidth="226.0" promptText="Select Remote Directory" />
+                  <ComboBox id="button_inside" fx:id="remoteDirectory" layoutX="64.0" layoutY="85.0" onMouseClicked="#select_remote_directory" prefWidth="226.0" promptText="Select Remote Directory" />
                </children>
                <effect>
                   <Lighting diffuseConstant="1.37" specularConstant="1.37" specularExponent="33.49" surfaceScale="0.0">

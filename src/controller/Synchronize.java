@@ -21,7 +21,10 @@ import synchro.Synchro;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.Random;
+
+import com.github.sardine.DavResource;
 
 public class Synchronize {
 
@@ -91,23 +94,23 @@ public class Synchronize {
     @FXML
     void initialize(){
 
-        remoteDirectory.getItems().add("Test 1");
-        remoteDirectory.getItems().add("Test 2");
+//        remoteDirectory.getItems().add("Test 1");
+//        remoteDirectory.getItems().add("Test 2");
 
-    	for(int i=0; i< 4; i++) {
-    		Node node = null;
-			try {
-				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/resources/view/fileBox.fxml"));
-    			node = fxmlLoader.load();
-    			((FileBox) fxmlLoader.getController()).file_name.setText("test.txt");
-    		} catch (IOException e1) {
-    			// TODO Auto-generated catch block
-    			e1.printStackTrace();
-    		}
-
-			file_scroll.getChildren().add(node);
-
-    	}
+//    	for(int i=0; i< 4; i++) {
+//    		Node node = null;
+//			try {
+//				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/resources/view/fileBox.fxml"));
+//    			node = fxmlLoader.load();
+//    			((FileBox) fxmlLoader.getController()).file_name.setText("test.txt");
+//    		} catch (IOException e1) {
+//    			// TODO Auto-generated catch block
+//    			e1.printStackTrace();
+//    		}
+//
+//			file_scroll.getChildren().add(node);
+//
+//    	}
 
 
 
@@ -212,7 +215,14 @@ public class Synchronize {
     }
 
     @FXML
-    void select_remote_directory(ActionEvent event) {
+    void select_remote_directory() {
+    	
+    	List<DavResource> folders = controller.Connect.sync.listFolders("/");
+    	for (DavResource folder : folders) {
+    		
+    		remoteDirectory.getItems().add(folder.getPath().replace(controller.Connect.sync.remote_path, ""));
+    	}
+    	
 
     }
 

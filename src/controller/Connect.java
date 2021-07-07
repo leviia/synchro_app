@@ -14,6 +14,8 @@ import application.Main;
 
 public class Connect {
 	
+	public static Synchro sync;
+	
 	private static boolean cont = false;
 
     @FXML
@@ -49,7 +51,7 @@ public class Connect {
     	}
     	
     	
-    	Synchro sync = new synchro.Synchro(username_input.getText(),pass_input.getText(),hostName_input.getText());
+    	sync = new synchro.Synchro(username_input.getText(),pass_input.getText(),hostName_input.getText());
     	
     	if (sync.test_sync()) {
     	connect_btn.setText("continue");

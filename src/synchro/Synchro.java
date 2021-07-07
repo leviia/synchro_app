@@ -17,8 +17,6 @@ import java.util.List;
 import java.util.function.IntFunction;
 import java.util.stream.Collectors;
 
-import org.aarboard.nextcloud.api.NextcloudConnector;
-
 import com.github.sardine.DavResource;
 import com.github.sardine.Sardine;
 import com.github.sardine.SardineFactory;
@@ -33,7 +31,7 @@ public class Synchro {
 	private ArrayList<Cacheobj> list_diff = new ArrayList<Cacheobj>();
 
 	private String remote_folder = "";
-	private String remote_path;
+	public String remote_path;
 
 	private String local_folder = "";
 	private String local_path = "/home/arnaud/Documents/project";
@@ -168,6 +166,25 @@ public class Synchro {
 
 		save_remote_cache();
 
+	}
+	
+	public List<DavResource> listFolders(String url) {
+		
+		List<DavResource> files = null;
+		List<DavResource> folders = new ArrayList<>();
+		try {
+			files = user.sardine.list("https://" + user.domain + remote_path, 1);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		for (DavResource res : files) {
+			if(res.isDirectory()) {
+				folders.add(res);
+			}
+		}
+		return folders;
+		
 	}
 
 	private void save_remote_cache() {
