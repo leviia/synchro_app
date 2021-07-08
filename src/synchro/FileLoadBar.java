@@ -1,6 +1,7 @@
 package synchro;
 
 import java.io.IOException;
+import java.io.Serializable;
 
 import controller.FileBox;
 import javafx.fxml.FXMLLoader;

@@ -96,11 +96,11 @@
 #download_lineChart{
     -fx-background-color: white;
     -fx-background-radius: 20;
-    -fx-border-color: #f0eded;
+    /* -fx-border-color: #f0eded; */
     -fx-border-radius: 20;
     -fx-text-fill: #00BC73;
     -fx-pref-width: 425;
-    -fx-pref-height: 225;
+    -fx-pref-height: 160;
 }
 #upload_lineChart{
     -fx-background-color: white;

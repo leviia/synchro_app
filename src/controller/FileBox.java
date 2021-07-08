@@ -37,14 +37,14 @@ public class FileBox {
         double max_size = 150;
         progress.setWidth((percentageValue*max_size)/100);
         if(percentageValue == 100)
-            onFinishedProgress();
+            finishedProgress();
     }
     
     public void setFileName(String name) {
     	file_name.setText(name);
     }
 
-    void onFinishedProgress(){
+    public void finishedProgress(){
         char tick = (char)0x2713;
         root.getChildren().remove(progress_background);
         Label label = new Label(tick+" Done");

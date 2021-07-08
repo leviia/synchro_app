@@ -14,12 +14,15 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.*;
 import javafx.scene.shape.*;
 import javafx.stage.DirectoryChooser;
+import synchro.Cacheobj;
 import synchro.FileLoadBar;
 import synchro.Job;
 import synchro.Synchro;
 
 import java.io.File;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 import java.util.Random;
 
 import com.github.sardine.DavResource;
@@ -87,7 +90,7 @@ public class Synchronize {
     private Label storage_percentage;
 
     @FXML
-    private VBox file_scroll;
+    public VBox file_scroll;
 
     @FXML
     private Pane uploadChart_Container;
@@ -99,14 +102,8 @@ public class Synchronize {
 
     @FXML
     void initialize(){
-
-    	    FileLoadBar flb1 = new FileLoadBar();
-    	    flb1.controller.file_name.setText("test.txt");
-    	    file_scroll.getChildren().add(flb1.node);
-
-    	    FileLoadBar flb2 = new FileLoadBar();
-    	    flb2.controller.file_name.setText("test.txt");
-    	    file_scroll.getChildren().add(flb2.node);
+    	
+    	controller.Connect.sync.sync_controller = this;
 
         initLineCarts();
 
@@ -120,77 +117,16 @@ public class Synchronize {
 
     }
 
-    void initLineCarts(){ // this is for chart testing purpose.
+	void initLineCarts(){ // this is for chart testing purpose.
 
         download_chart.lookup(".chart-plot-background").setStyle("-fx-background-color: transparent;");
         upload_chart.lookup(".chart-plot-background").setStyle("-fx-background-color: transparent;");
 
         setData(download_chart,"-fx-stroke: #f2cb0a");
         setData(upload_chart, "-fx-stroke: #00BC73");
+        
+        
     }
-
-//    public void setupChart(LineChart<String, Number> lineChart, Color lineColor,Pane container, Color linearColor){
-//        LineChart<String, Number> chart = new LineChart<>(lineChart.getXAxis(), lineChart.getYAxis(), lineChart.getData()) {
-//            @Override
-//            protected void layoutPlotChildren() {
-//                super.layoutPlotChildren();
-//                getPlotChildren().clear();
-//                Series<String, Number> series = getData().get(0);
-//                ObservableList<Data<String, Number>> listOfData = series.getData();
-//                for (int i = 0; i < listOfData.size() - 1; i++) {
-//                    double x1 = getXAxis().getDisplayPosition(listOfData.get(i).getXValue());
-//                    double y1 = getYAxis().getDisplayPosition(0);
-//                    double x2 = getXAxis().getDisplayPosition(listOfData.get((i + 1)).getXValue());
-//                    double y2 = getYAxis().getDisplayPosition(0);
-//                    Polygon polygon = new Polygon();
-//                    LinearGradient linearGrad = new LinearGradient(0, 0, 1, 1,
-//                            true, // proportional
-//                            CycleMethod.NO_CYCLE, // cycle colors
-//                            new Stop(0.1f, linearColor));
-//
-//                    polygon.getPoints().addAll(x1, y1,
-//                            x1, getYAxis().getDisplayPosition(listOfData.get(i).getYValue()),
-//                            x2, getYAxis().getDisplayPosition(listOfData.get((i + 1)).getYValue()),
-//                            x2, y2);
-//                    CubicCurve curve = new CubicCurve();
-//                    curve.setStrokeWidth(4);
-//                    curve.setFill(Color.TRANSPARENT);
-//                    curve.setStroke(lineColor);
-//                    curve.setStartX(x1);
-//                    curve.setStartY(getYAxis().getDisplayPosition(listOfData.get(i).getYValue()));
-//                    curve.setEndX(x2);
-//                    curve.setEndY(getYAxis().getDisplayPosition(listOfData.get((i + 1)).getYValue()));
-//                    double cy1 = getYAxis().getDisplayPosition(listOfData.get(i).getYValue());
-//                    double cy2 = getYAxis().getDisplayPosition(listOfData.get((i + 1)).getYValue());
-//                    double distance = Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
-//                    distance = distance / 1.5;
-//                    curve.setControlX1(x1 + 18 * (x2 - x1) / distance);
-//                    curve.setControlY1(cy1 + 13 * (cy2 - cy1) / distance);
-//                    curve.setControlX2(x2 - 22 * (x2 - x1) / distance);
-//                    curve.setControlY2(cy2 - 14 * (cy2 - cy1) / distance);
-//
-//                    getPlotChildren().add(curve);
-//                    getPlotChildren().add(polygon);
-//                    polygon.toFront();
-//                    polygon.setFill(linearGrad);
-//                }
-//            }
-//        };
-//        chart.lookup(".chart-plot-background").setStyle("-fx-background-color: transparent;");
-//        chart.setLayoutX(lineChart.getLayoutX());
-//        chart.setLayoutY(lineChart.getLayoutY());
-//        chart.setMinSize(Region.USE_PREF_SIZE,Region.USE_PREF_SIZE);
-//        chart.setMaxSize(Region.USE_PREF_SIZE,Region.USE_PREF_SIZE);
-//        chart.setPrefSize(lineChart.getPrefWidth(),lineChart.getPrefHeight());
-//        chart.setLegendVisible(false);
-//        chart.setAlternativeColumnFillVisible(false);
-//        chart.setHorizontalGridLinesVisible(false);
-//        chart.setHorizontalZeroLineVisible(false);
-//        chart.setVerticalGridLinesVisible(false);
-//        chart.setVerticalZeroLineVisible(false);
-//        container.getChildren().remove(lineChart);
-//        container.getChildren().add(chart);
-//    }
 
     private void setData(LineChart<String, Number> lineChart, String lineColor) {
         XYChart.Series<String, Number> series = new XYChart.Series<>();
@@ -240,9 +176,16 @@ public class Synchronize {
 
     @FXML
     void select_local_directory(ActionEvent event) {
+    	
+        String folder = System.getProperty("user.home");
+    	
+    	if (!btn_local_directory.getText().equals("Select Local Directory")) {
+    		folder = btn_local_directory.getText();
+    	}
+    	
         DirectoryChooser chooser = new DirectoryChooser();
         chooser.setTitle("Select Local Directory");
-        File defaultDirectory = new File("/home/arnaud/");
+        File defaultDirectory = new File(folder);
         chooser.setInitialDirectory(defaultDirectory);
         File selectedDirectory = chooser.showDialog(Main.getInstance().stage);
         btn_local_directory.setText(selectedDirectory.getPath());
@@ -282,8 +225,9 @@ public class Synchronize {
 
     @FXML
     void start_synchronization(ActionEvent event) {
-
-    	Job job1 = new Job();
+    	
+    	controller.Connect.sync.halt = false;
+    	controller.Connect.sync.run();
 
     }
 
