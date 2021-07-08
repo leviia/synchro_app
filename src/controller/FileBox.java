@@ -1,6 +1,7 @@
 package controller;
 
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -29,7 +30,7 @@ public class FileBox {
 
     @FXML
     void initialize(){
-        updateProgress(10);
+        updateProgress(100);
     }
 
     void updateProgress(int percentageValue){
@@ -48,6 +49,7 @@ public class FileBox {
         root.getChildren().remove(progress_background);
         Label label = new Label(tick+" Done");
         label.setId("status");
+        label.setAlignment(Pos.CENTER);
         root.getChildren().add(label);
     }
 
