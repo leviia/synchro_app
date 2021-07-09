@@ -10,7 +10,7 @@
 <HBox id="even" fx:id="root" alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="55.0" prefWidth="582.0" stylesheets="@fileBox.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FileBox">
    <children>
       <ImageView fx:id="icon_view" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" />
-      <Label fx:id="file_name" alignment="CENTER" prefHeight="60.0" prefWidth="200.0" text="fileName_with.extension" wrapText="true">
+      <Label fx:id="file_name" alignment="CENTER" prefHeight="60.0" prefWidth="200.0" text="fileName_with.extension" textOverrun="LEADING_ELLIPSIS">
          <font>
             <Font name="Arial Rounded MT Bold" size="14.0" />
          </font>

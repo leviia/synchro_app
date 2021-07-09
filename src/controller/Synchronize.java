@@ -16,7 +16,6 @@ import javafx.scene.shape.*;
 import javafx.stage.DirectoryChooser;
 import synchro.Cacheobj;
 import synchro.FileLoadBar;
-import synchro.Job;
 import synchro.Synchro;
 
 import java.io.File;

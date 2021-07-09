@@ -2,7 +2,6 @@ package synchro;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -11,30 +10,23 @@ import java.io.ObjectOutputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.net.URLEncoder;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.Normalizer;
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.LinkedList;
+import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Queue;
-import java.util.function.IntFunction;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.queue.CircularFifoQueue;
 
 import com.github.sardine.DavResource;
-import com.github.sardine.Sardine;
-import com.github.sardine.SardineFactory;
 
 import controller.Synchronize;
 import javafx.application.Platform;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
 
 public class Synchro {
 
@@ -51,113 +43,84 @@ public class Synchro {
 	public Synchronize sync_controller;
 
 	public static User user;
-	
-	Queue<Cacheobj> fifo = new CircularFifoQueue<Cacheobj>(4);
-	
 
+	Queue<Cacheobj> fifo = new CircularFifoQueue<Cacheobj>(4);
 
 	public Synchro(String username, String password, String hostname) {
 
 		user = new User(username, password, hostname);
-		remote_path = "/remote.php/dav/files/"+user.username;
+		remote_path = "/remote.php/dav/files/" + user.username;
 	}
 
-	private void load_remote_cache() {
-		System.out.println("load_remote_cache");
-		FileInputStream fis;
-		try {
-			fis = new FileInputStream("/tmp/test.txt");
-			ObjectInputStream ois = new ObjectInputStream(fis);
-			remote_cache = (ArrayList<Cacheobj>) ois.readObject();
-			ois.close();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+	private void create_remote_cache() throws IOException {
+		System.out.println("create remote cache");
+
+		List<DavResource> files = null;
+		files = user.sardine.list("https://" + user.domain + remote_path + remote_folder, -1);
+
+		for (DavResource res : files) {
+			String path = Normalizer.normalize(res.toString().replace(remote_path + remote_folder, "").replaceAll("/$", ""),Normalizer.Form.NFD);
+			Cacheobj aux = new Cacheobj(path,res.getContentLength(), res.isDirectory());
+			remote_cache.add(aux);
 		}
 
+		save_remote_cache();
+
+	}
+	
+	private void load_remote_cache() throws IOException, ClassNotFoundException {
+		System.out.println("load_remote_cache");
+		remote_cache.clear();
+		FileInputStream fis = new FileInputStream("/tmp/test.txt");
+		ObjectInputStream ois = new ObjectInputStream(fis);
+		remote_cache = (ArrayList<Cacheobj>) ois.readObject();
+		ois.close();
+
 	}
 
-	private void upload() {
+	private void upload() throws IOException, URISyntaxException {
 		System.out.println("upload");
 
 		for (Cacheobj co : list_diff) {
 			System.out.println(co.path);
-			try {
-				URL url1= new URL("https://" + user.domain + remote_path + remote_folder+ co.path);
-				URI uri = new URI(url1.getProtocol(), url1.getUserInfo(), url1.getHost(), url1.getPort(), url1.getPath(), url1.getQuery(), url1.getRef());
-				if (co.isdir) {
-					System.out.println("dir" + uri.toASCIIString());
-					user.sardine.createDirectory(uri.toASCIIString());
-					fifo.add(co);
-					update_file_scroll();
-				} else {
-					InputStream fis = new FileInputStream(new File("/home/arnaud/Documents/project" + co.path));
-					System.out.println(uri.toASCIIString());
-					user.sardine.put(uri.toASCIIString(), fis);
-					fifo.add(co);
-					System.out.println("done2");
-					update_file_scroll();
-					System.out.println("done3");
-				}
-				remote_cache.add(co);
-				save_remote_cache();
-
-			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (URISyntaxException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			URL url1 = new URL("https://" + user.domain + remote_path + remote_folder + co.path);
+			URI uri = new URI(url1.getProtocol(), url1.getUserInfo(), url1.getHost(), url1.getPort(),
+					url1.getPath(), url1.getQuery(), url1.getRef());
+			if (co.isdir && (co.path != null)) {
+				System.out.println(co.path);
+				System.out.println("dir" + uri.toASCIIString());
+				user.sardine.createDirectory(uri.toASCIIString());
+				fifo.add(co);
+				update_file_scroll();
+			} else {
+				InputStream fis = new FileInputStream(new File("/home/arnaud/Documents/project" + co.path));
+				System.out.println(uri.toASCIIString());
+				user.sardine.put(uri.toASCIIString(), fis);
+				fifo.add(co);
+				update_file_scroll();
 			}
+			remote_cache.add(co);
+			save_remote_cache();
 
 		}
 	}
 
-	private void wait(int s) {
-		// TODO Auto-generated method stub
-		try {
-			Thread.sleep(s);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-	}
-
-	private void create_local_cache() {
-		// TODO Auto-generated method stub
+	private void create_local_cache() throws IOException {
 
 		local_cache.clear();
 
-		List<Path> files = null;
-		try {
+		List<Path> files = Files.find(Paths.get("/home/arnaud/Documents/project"), 999,
+				(p, bfa) -> (bfa.isDirectory() || bfa.isRegularFile())).collect(Collectors.toList());
 
-			files = Files.find(Paths.get("/home/arnaud/Documents/project"), 999,
-					(p, bfa) -> (bfa.isDirectory() || bfa.isRegularFile())).collect(Collectors.toList());
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 
 		for (Path res : files) {
-			Cacheobj aux = null;
-			try {
-				aux = new Cacheobj(Normalizer.normalize(res.toAbsolutePath().toString().replace(local_path, ""),
-						Normalizer.Form.NFD), Files.size(res), Files.isDirectory(res));
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			Cacheobj aux = new Cacheobj(Normalizer.normalize(res.toAbsolutePath().toString().replace(local_path, ""),
+					Normalizer.Form.NFD), Files.size(res), Files.isDirectory(res));
+		
+			if (aux.path != null && !aux.path.isEmpty()) {
+				local_cache.add(aux);
 			}
-			local_cache.add(aux);
+
 		}
 
 	}
@@ -176,34 +139,14 @@ public class Synchro {
 		}
 	}
 
-	private void create_remote_cache() {
-		System.out.println("create remote cache");
-
-		List<DavResource> files = null;
-		try {
-			files = user.sardine.list("https://" + user.domain + remote_path + remote_folder, -1);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		for (DavResource res : files) {
-			Cacheobj aux = new Cacheobj(Normalizer
-					.normalize(res.toString().replace(remote_path, "").replaceAll("/$", ""), Normalizer.Form.NFD),
-					res.getContentLength(), res.isDirectory());
-			remote_cache.add(aux);
-		}
-
-		save_remote_cache();
-
-	}
-	
 	public List<DavResource> listFolders(String url) {
-		
+
 		List<DavResource> files = null;
 		List<DavResource> folders = new ArrayList<>();
 		try {
-			URL url1= new URL("https://" + user.domain + remote_path+url);
-			URI uri = new URI(url1.getProtocol(), url1.getUserInfo(), url1.getHost(), url1.getPort(), url1.getPath(), url1.getQuery(), url1.getRef());
+			URL url1 = new URL("https://" + user.domain + remote_path + url);
+			URI uri = new URI(url1.getProtocol(), url1.getUserInfo(), url1.getHost(), url1.getPort(), url1.getPath(),
+					url1.getQuery(), url1.getRef());
 			files = user.sardine.list(uri.toString(), 1);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -213,65 +156,27 @@ public class Synchro {
 			e.printStackTrace();
 		}
 		for (DavResource res : files) {
-			if(res.isDirectory()) {
+			if (res.isDirectory()) {
 				folders.add(res);
 			}
 		}
 		return folders;
-		
-	}
-
-	private void save_remote_cache() {
-
-		FileOutputStream fos;
-		try {
-			fos = new FileOutputStream("/tmp/test.txt");
-			ObjectOutputStream oos = new ObjectOutputStream(fos);
-			oos.writeObject(remote_cache);
-			oos.close();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 
 	}
 
-	public void run() {
-		
-		new Thread(new Runnable() {
-		     @Override
-		     public void run() {
-		          
-		    	 if (!new File("/tmp/test.txt").isFile()) {
-		 			create_remote_cache();
-		 		}
-		 		load_remote_cache();
-		 		while (!halt ) {
-		 			create_local_cache();
-		 			compare();
-		 			upload();
-		 			try {
-						wait(1000);
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-		 		}
-		    	 
-		    	 
-		     }
-		}).start();
+	private void save_remote_cache() throws IOException {
 
-		
+		FileOutputStream fos = new FileOutputStream("/tmp/test.txt");
+		ObjectOutputStream oos = new ObjectOutputStream(fos);
+		oos.writeObject(remote_cache);
+		oos.close();
+
 	}
-
+	
 	public boolean test_sync() {
 
 		try {
-			if(user.sardine.list("https://" + user.domain + remote_path, 0) != null) {
+			if (user.sardine.list("https://" + user.domain + remote_path, 0) != null) {
 				return true;
 			}
 
@@ -280,25 +185,74 @@ public class Synchro {
 		}
 		return false;
 	}
-	
+
 	public void update_file_scroll() {
 		// TODO Auto-generated method stub
-		Platform.runLater(
-				  () -> {
-					  List<Cacheobj> fifoList = new ArrayList<>( fifo );
-						
-						sync_controller.file_scroll.getChildren().clear();
-						
-						for (Cacheobj co : fifoList) {
-							co.fileLoadBar.controller.file_name.setText(co.path);
-							sync_controller.file_scroll.getChildren().add(co.fileLoadBar.node);
-							
-						}
-				  }
-				);
-		
-		
-		
+
+		Set<Cacheobj> fifoList = new HashSet<>(fifo);
+
+		Platform.runLater(() -> {
+
+			sync_controller.file_scroll.getChildren().clear();
+			for (Cacheobj co : fifoList) {
+				System.out.println(co.path);
+				co.fileLoadBar.controller.file_name.setText(co.path);
+
+				sync_controller.file_scroll.getChildren().add(co.fileLoadBar.node);
+
+			}
+
+		});
+
+	}
+	
+	private void printLists() {
+		for (Cacheobj co : remote_cache) {
+			System.out.println("path: " + co.path);
+		}
+		for (Cacheobj co : local_cache) {
+			System.out.println("path: " + co.path);
+		}
+		System.out.println("diff ");
+		for (Cacheobj co : list_diff) {
+			System.out.println("path: " + co.path);
+		}
+	}
+
+	private void mainLoop() throws IOException, InterruptedException, ClassNotFoundException {
+
+		if (!new File("/tmp/test.txt").isFile()) {
+			create_remote_cache();
+		}
+		load_remote_cache();
+		while (!halt) {
+			create_local_cache();
+			compare();
+			printLists();
+			// upload();
+			Thread.sleep(1000);
+		}
+
+	}
+
+	public void run() {
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				try {
+					mainLoop();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}).start();
 	}
 
 }

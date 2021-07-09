@@ -16,9 +16,9 @@ public class Cacheobj implements Serializable {
 		this.isdir = isdir;		
 		this.fileLoadBar = new FileLoadBar();
 		
-		if (this.isdir) {
-			this.fileLoadBar.controller.finishedProgress();
-		}
+//		if (this.isdir) {
+//			this.fileLoadBar.controller.finishedProgress();
+//		}
 		
 	}
 
