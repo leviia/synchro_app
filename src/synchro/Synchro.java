@@ -16,6 +16,7 @@ import java.nio.file.Paths;
 import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Queue;
 import java.util.Set;
@@ -44,7 +45,9 @@ public class Synchro {
 
 	public static User user;
 
-	Queue<Cacheobj> fifo = new CircularFifoQueue<Cacheobj>(4);
+	private Queue<Cacheobj> fifo = new CircularFifoQueue<Cacheobj>(4);
+	public Queue<Long> upload_fifo = new CircularFifoQueue<Long>(30);
+	public Queue<Long> download_fifo = new CircularFifoQueue<Long>(30);
 
 	public Synchro(String username, String password, String hostname) {
 
@@ -82,22 +85,35 @@ public class Synchro {
 		System.out.println("upload");
 
 		for (Cacheobj co : list_diff) {
-			System.out.println(co.path);
+			//System.out.println(co.path);
 			URL url1 = new URL("https://" + user.domain + remote_path + remote_folder + co.path);
 			URI uri = new URI(url1.getProtocol(), url1.getUserInfo(), url1.getHost(), url1.getPort(),
 					url1.getPath(), url1.getQuery(), url1.getRef());
 			if (co.isdir && (co.path != null)) {
-				System.out.println(co.path);
-				System.out.println("dir" + uri.toASCIIString());
-				user.sardine.createDirectory(uri.toASCIIString());
+				//System.out.println(co.path);
+				//System.out.println("dir" + uri.toASCIIString());
 				fifo.add(co);
 				update_file_scroll();
+				user.sardine.createDirectory(uri.toASCIIString());
+				Platform.runLater(() -> {
+
+					co.fileLoadBar.controller.finishedProgress();
+
+					});
+				
+				
 			} else {
 				InputStream fis = new FileInputStream(new File("/home/arnaud/Documents/project" + co.path));
-				System.out.println(uri.toASCIIString());
-				user.sardine.put(uri.toASCIIString(), fis);
+				//System.out.println(uri.toASCIIString());
 				fifo.add(co);
 				update_file_scroll();
+				user.sardine.put(uri.toASCIIString(), fis);
+				Platform.runLater(() -> {
+
+					co.fileLoadBar.controller.finishedProgress();
+
+					});
+				
 			}
 			remote_cache.add(co);
 			save_remote_cache();
@@ -131,9 +147,11 @@ public class Synchro {
 		for (Cacheobj lco : local_cache) {
 			if (!remote_cache.stream().anyMatch(o -> o.path.equals(lco.path))) {
 				list_diff.add(lco);
+				continue;
 			}
 			if ((!remote_cache.stream().anyMatch(o -> o.size == lco.size) && (!lco.isdir))) {
 				list_diff.add(lco);
+				continue;
 			}
 
 		}
@@ -189,13 +207,19 @@ public class Synchro {
 	public void update_file_scroll() {
 		// TODO Auto-generated method stub
 
-		Set<Cacheobj> fifoList = new HashSet<>(fifo);
+		Set<Cacheobj> fifoList = new LinkedHashSet<>(fifo);
+		
+//		System.out.println("###############1");
+//		for(Cacheobj co : fifoList) {
+//			System.out.println(co.path);	
+//		}
+//		System.out.println("###############2");
 
 		Platform.runLater(() -> {
 
 			sync_controller.file_scroll.getChildren().clear();
 			for (Cacheobj co : fifoList) {
-				System.out.println(co.path);
+				//System.out.println(co.path);
 				co.fileLoadBar.controller.file_name.setText(co.path);
 
 				sync_controller.file_scroll.getChildren().add(co.fileLoadBar.node);
@@ -219,7 +243,7 @@ public class Synchro {
 		}
 	}
 
-	private void mainLoop() throws IOException, InterruptedException, ClassNotFoundException {
+	private void mainLoop() throws IOException, InterruptedException, ClassNotFoundException, URISyntaxException {
 
 		if (!new File("/tmp/test.txt").isFile()) {
 			create_remote_cache();
@@ -229,7 +253,7 @@ public class Synchro {
 			create_local_cache();
 			compare();
 			printLists();
-			// upload();
+			upload();
 			Thread.sleep(1000);
 		}
 
@@ -248,6 +272,9 @@ public class Synchro {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (URISyntaxException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}

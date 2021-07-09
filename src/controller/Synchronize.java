@@ -1,6 +1,7 @@
 package controller;
 
 import application.Main;
+import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
@@ -19,10 +20,13 @@ import synchro.FileLoadBar;
 import synchro.Synchro;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 import java.util.Random;
+import java.util.Set;
 
 import com.github.sardine.DavResource;
 
@@ -118,20 +122,54 @@ public class Synchronize {
 
 	void initLineCarts(){ // this is for chart testing purpose.
 
+		upload_chart.lookup(".chart-plot-background").setStyle("-fx-background-color: transparent;");
         download_chart.lookup(".chart-plot-background").setStyle("-fx-background-color: transparent;");
-        upload_chart.lookup(".chart-plot-background").setStyle("-fx-background-color: transparent;");
-
+       
+        for(int i = 0; i == 100;i++) {
+        	controller.Connect.sync.upload_fifo.add((long) 10);
+        	controller.Connect.sync.download_fifo.add((long) 10);
+        }
         setData(download_chart,"-fx-stroke: #f2cb0a");
         setData(upload_chart, "-fx-stroke: #00BC73");
+        //update_upload_chart();
+        
+
+
+
         
         
     }
 
-    private void setData(LineChart<String, Number> lineChart, String lineColor) {
+    private void update_upload_chart() {
+		List<Long> fifoList = new ArrayList(controller.Connect.sync.upload_fifo);
+
+		Platform.runLater(() -> {
+
+			upload_chart.getData().clear();
+			XYChart.Series<String, Number> series = new XYChart.Series<>();
+			int i = 0;
+			for(long speed : fifoList){
+	            XYChart.Data<String, Number> data = new XYChart.Data<>();
+	            Rectangle rect = new Rectangle();
+	            rect.setVisible(false);
+	            data.setNode(rect);
+	            data.setXValue(""+i);
+	            data.setYValue(speed);
+	            series.getData().add(data);
+	            i++;
+	        }
+			upload_chart.getData().add(series);
+	        series.getNode().setStyle("-fx-stroke: #00BC73");
+
+		});
+		
+	}
+
+	private void setData(LineChart<String, Number> lineChart, String lineColor) {
         XYChart.Series<String, Number> series = new XYChart.Series<>();
 
 
-        for(int i = 0; i< 10; i++){
+        for(int i = 0; i< 30; i++){
             XYChart.Data<String, Number> data = new XYChart.Data<>();
             Rectangle rect = new Rectangle();
             rect.setVisible(false);
@@ -227,6 +265,10 @@ public class Synchronize {
     	
     	controller.Connect.sync.halt = false;
     	controller.Connect.sync.run();
+    	
+//        upload_chart.getData().clear();
+//        
+//        setData(upload_chart, "-fx-stroke: #00BC73");
 
     }
 

@@ -20,17 +20,26 @@ public class FileBox {
     public Label file_name;
 
     @FXML
-    private Label file_size;
+    public Label file_size;
 
     @FXML
     private Rectangle progress;
 
     @FXML
     private AnchorPane progress_background;
+    
+    private Label status;
 
     @FXML
     void initialize(){
-        updateProgress(100);
+        //updateProgress(100);
+    	root.getChildren().remove(progress_background);
+    	
+    	status = new Label("Uploading ...");
+    	status.setId("status");
+    	status.setAlignment(Pos.CENTER);
+        root.getChildren().add(status);
+    	
     }
 
     void updateProgress(int percentageValue){
@@ -46,11 +55,12 @@ public class FileBox {
 
     public void finishedProgress(){
         char tick = (char)0x2713;
-        root.getChildren().remove(progress_background);
-        Label label = new Label(tick+" Done");
-        label.setId("status");
-        label.setAlignment(Pos.CENTER);
-        root.getChildren().add(label);
+        status.setText(tick+" Done");
+//        root.getChildren().remove("status");
+//        Label label = new Label(tick+" Done");
+//        label.setId("status");
+//        label.setAlignment(Pos.CENTER);
+//        root.getChildren().add(label);
     }
 
 }
