@@ -21,6 +21,7 @@ import synchro.Synchro;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -117,7 +118,23 @@ public class Synchronize {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
+        
+        Thread thread_update_charts = new Thread(new Runnable() {
+            public void run()
+            {
+            	while(true) {
+            		update_upload_chart();
+            		update_download_chart();
+                	try {
+    					Thread.sleep(1000);
+    				} catch (InterruptedException e) {
+    					// TODO Auto-generated catch block
+    					e.printStackTrace();
+    				}
+            	}
+            	
+            }});  
+        thread_update_charts.start();
     }
 
 	void initLineCarts(){ // this is for chart testing purpose.
@@ -125,27 +142,66 @@ public class Synchronize {
 		upload_chart.lookup(".chart-plot-background").setStyle("-fx-background-color: transparent;");
         download_chart.lookup(".chart-plot-background").setStyle("-fx-background-color: transparent;");
        
-        for(int i = 0; i == 100;i++) {
-        	controller.Connect.sync.upload_fifo.add((long) 10);
-        	controller.Connect.sync.download_fifo.add((long) 10);
+        for(int i = 0; i < 100;i++) {
+        	controller.Connect.sync.upload_fifo.add((float) 0);
+        	controller.Connect.sync.download_fifo.add((long) 0);
         }
-        setData(download_chart,"-fx-stroke: #f2cb0a");
-        setData(upload_chart, "-fx-stroke: #00BC73");
-        //update_upload_chart();
-        
-
-
-
-        
-        
     }
 
     private void update_upload_chart() {
-		List<Long> fifoList = new ArrayList(controller.Connect.sync.upload_fifo);
+		List<Float> fifoList = new ArrayList<Float>(controller.Connect.sync.upload_fifo);
+
+		Platform.runLater(() -> {
+			
+			long divider = 1;
+			
+			 if(Collections.max(fifoList) >= 10) {
+				divider = 1;
+			}if(Collections.max(fifoList) >= 100) {
+				divider = 10;
+			}if(Collections.max(fifoList) >= 1000) {
+				divider = 100;
+			}if(Collections.max(fifoList) >= 10000) {
+				divider = 1000;
+			}if(Collections.max(fifoList) >= 100000) {
+				divider = 10000;
+			}if(Collections.max(fifoList) >= 1000000) {
+				divider = 100000;
+			}if(Collections.max(fifoList) >= 10000000) {
+				divider = 1000000;
+			}if(Collections.max(fifoList) >= 100000000) {
+				divider = 10000000;
+			}
+
+			upload_chart.getData().clear();
+			XYChart.Series<String, Number> series = new XYChart.Series<>();
+			int i = 0;
+			for(float speed : fifoList){
+	            XYChart.Data<String, Number> data = new XYChart.Data<>();
+	            Rectangle rect = new Rectangle();
+	            rect.setVisible(false);
+	            data.setNode(rect);
+	            data.setXValue(""+i);
+	            System.out.println(i+" Speed :"+speed+", divider:"+ divider);
+	            data.setYValue((speed/Collections.max(fifoList))*100);
+	            series.getData().add(data);
+	            i++;
+	        }
+			upload_chart.getData().add(series);
+	        series.getNode().setStyle("-fx-stroke: #00BC73");
+	        
+	        System.out.println("#################");
+
+		});
+		
+	}
+    
+    private void update_download_chart() {
+		List<Long> fifoList = new ArrayList<Long>(controller.Connect.sync.download_fifo);
 
 		Platform.runLater(() -> {
 
-			upload_chart.getData().clear();
+			download_chart.getData().clear();
 			XYChart.Series<String, Number> series = new XYChart.Series<>();
 			int i = 0;
 			for(long speed : fifoList){
@@ -158,8 +214,8 @@ public class Synchronize {
 	            series.getData().add(data);
 	            i++;
 	        }
-			upload_chart.getData().add(series);
-	        series.getNode().setStyle("-fx-stroke: #00BC73");
+			download_chart.getData().add(series);
+	        series.getNode().setStyle("-fx-stroke: #f2cb0a");
 
 		});
 		
@@ -265,10 +321,7 @@ public class Synchronize {
     	
     	controller.Connect.sync.halt = false;
     	controller.Connect.sync.run();
-    	
-//        upload_chart.getData().clear();
-//        
-//        setData(upload_chart, "-fx-stroke: #00BC73");
+    	//controller.Connect.sync.upload_fifo.add((long) new Random().nextInt(100000000));
 
     }
 

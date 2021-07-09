@@ -20,6 +20,7 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Queue;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.queue.CircularFifoQueue;
@@ -46,7 +47,7 @@ public class Synchro {
 	public static User user;
 
 	private Queue<Cacheobj> fifo = new CircularFifoQueue<Cacheobj>(4);
-	public Queue<Long> upload_fifo = new CircularFifoQueue<Long>(30);
+	public Queue<Float> upload_fifo = new CircularFifoQueue<Float>(30);
 	public Queue<Long> download_fifo = new CircularFifoQueue<Long>(30);
 
 	public Synchro(String username, String password, String hostname) {
@@ -107,7 +108,10 @@ public class Synchro {
 				//System.out.println(uri.toASCIIString());
 				fifo.add(co);
 				update_file_scroll();
+				long startTime = System.nanoTime();
 				user.sardine.put(uri.toASCIIString(), fis);
+				float time = TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - startTime);
+				upload_fifo.add(co.size/time);
 				Platform.runLater(() -> {
 
 					co.fileLoadBar.controller.finishedProgress();
