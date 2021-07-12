@@ -126,7 +126,7 @@ public class Synchronize {
             		update_upload_chart();
             		update_download_chart();
                 	try {
-    					Thread.sleep(1000);
+    					Thread.sleep(100);
     				} catch (InterruptedException e) {
     					// TODO Auto-generated catch block
     					e.printStackTrace();
@@ -153,24 +153,12 @@ public class Synchronize {
 
 		Platform.runLater(() -> {
 			
-			long divider = 1;
+			float divider = 1;
 			
-			 if(Collections.max(fifoList) >= 10) {
+			 if(Collections.max(fifoList) == 0.0) {
 				divider = 1;
-			}if(Collections.max(fifoList) >= 100) {
-				divider = 10;
-			}if(Collections.max(fifoList) >= 1000) {
-				divider = 100;
-			}if(Collections.max(fifoList) >= 10000) {
-				divider = 1000;
-			}if(Collections.max(fifoList) >= 100000) {
-				divider = 10000;
-			}if(Collections.max(fifoList) >= 1000000) {
-				divider = 100000;
-			}if(Collections.max(fifoList) >= 10000000) {
-				divider = 1000000;
-			}if(Collections.max(fifoList) >= 100000000) {
-				divider = 10000000;
+			}else {
+				divider = Collections.max(fifoList);
 			}
 
 			upload_chart.getData().clear();
@@ -183,7 +171,7 @@ public class Synchronize {
 	            data.setNode(rect);
 	            data.setXValue(""+i);
 	            System.out.println(i+" Speed :"+speed+", divider:"+ divider);
-	            data.setYValue((speed/Collections.max(fifoList))*100);
+	            data.setYValue((speed/divider)*100);
 	            series.getData().add(data);
 	            i++;
 	        }
